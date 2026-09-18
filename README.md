@@ -29,6 +29,12 @@ Tudo é salvo no **localStorage do navegador** — não tem servidor nem banco d
 
 Cada versão publicada fica marcada com uma tag no repositório — dá pra voltar a qualquer uma delas (`git checkout v1.0.0`, por exemplo) se algo quebrar.
 
+- **v1.3.0 — 2026-09-17**
+  - Puxar a tela pra baixo no topo de qualquer aba recarrega o app na hora (pull-to-refresh), como um aplicativo nativo.
+  - Gavetas com campo de texto (ex: novo registro de peso) agora se ajustam pra ficar sempre visíveis acima do teclado, mesmo em telas menores.
+  - Menu inferior (mobile) com visual de vidro fosco, e diálogos de confirmação ("Sair sem salvar?") com fundo branco sólido.
+  - Botão de voltar na tela de adicionar exercício a um treino.
+  - Correção de nome de exercício no catálogo padrão.
 - **v1.2.0 — 2026-09-17**
   - Layout dedicado para desktop (telas a partir de 960px): menu de navegação no topo em formato de pílula, gavetas viram diálogos centralizados, e as abas Treinos/Histórico/Perfil passam a ser lista + detalhe lado a lado, sem tela cheia.
   - Novo fluxo "Marcar treino feito" no desktop: registra um treino concluído vendo todos os exercícios de uma vez (pesos, humor, calorias), sem passar pelo carrossel de execução guiada — que continua exclusivo do mobile/academia.
