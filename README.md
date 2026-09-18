@@ -29,6 +29,11 @@ Tudo é salvo no **localStorage do navegador** — não tem servidor nem banco d
 
 Cada versão publicada fica marcada com uma tag no repositório — dá pra voltar a qualquer uma delas (`git checkout v1.0.0`, por exemplo) se algo quebrar.
 
+- **v1.2.0 — 2026-09-17**
+  - Layout dedicado para desktop (telas a partir de 960px): menu de navegação no topo em formato de pílula, gavetas viram diálogos centralizados, e as abas Treinos/Histórico/Perfil passam a ser lista + detalhe lado a lado, sem tela cheia.
+  - Novo fluxo "Marcar treino feito" no desktop: registra um treino concluído vendo todos os exercícios de uma vez (pesos, humor, calorias), sem passar pelo carrossel de execução guiada — que continua exclusivo do mobile/academia.
+  - Dashboard da Home reorganizado em grid de 6 colunas no desktop.
+  - Mobile (celular) permanece pixel-idêntico ao de antes; nada muda abaixo de 960px de largura.
 - **v1.1.0 — 2026-09-15**
   - Visual novo: tema claro (cards brancos, sombra suave, botões em pílula, fonte Poppins) e modo escuro com vidro fosco e destaque âmbar, alternáveis em Configurações.
   - Aba Treinos: navegação dos treinos A/B/C… por chips, direto na lista, sem precisar abrir a edição.

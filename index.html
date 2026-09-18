@@ -15,22 +15,23 @@ button,input{font-family:inherit;}
 
 /* ── TOKENS ── */
 :root{
-  --bg:#F3EEF7; --bg1:#FBEAF1; --bg2:#E9EEF9; --s1:#FFFFFF; --s2:#FFFFFF; --s3:#E4E2E9;
+  --bg:#F3EEF7; --bg1:#FBEAF1; --bg2:#E9EEF9; --s1:rgba(255,255,255,.6); --s2:rgba(255,255,255,.5); --s3:#E4E2E9; --s1-solid:#FFFFFF;
   --acc:#F2679E; --acc2:#FF7EB6; --accl:#C23B78; --accg:rgba(242,103,158,.35);
   --grn:#15803D; --red:#DC4C4C; --ylw:#92400E;
   --txt:#17151E; --txt2:#8B8894; --bdr:rgba(0,0,0,.06);
   --r:16px; --rl:22px; --nav:68px;
   --page-bg: linear-gradient(160deg,var(--bg1) 0%,var(--bg2) 100%) fixed;
-  --surface-blur: 0px;
+  --surface-blur: 20px;
   --acc-tint: rgba(242,103,158,.15); --acc-tint65: rgba(242,103,158,.65);
   --grn-tint: rgba(21,128,61,.15); --red-tint: rgba(220,76,76,.15);
   --ylw-tint: rgba(146,64,14,.15); --ylw-tint-strong: rgba(146,64,14,.3);
-  --glass-bg: rgba(255,255,255,.55); --glass-bg-active: rgba(255,255,255,.75); --glass-border: rgba(255,255,255,.6);
+  --glass-bg: rgba(23,21,30,.08); --glass-bg-active: rgba(23,21,30,.14); --glass-border: rgba(23,21,30,.14);
+  --glass-white-bg: rgba(255,255,255,.55); --glass-white-bg-active: rgba(255,255,255,.75); --glass-white-border: rgba(255,255,255,.6);
   --nav-bg: rgba(255,255,255,.85);
 }
 :root[data-theme="dark"]{
   --page-bg: radial-gradient(ellipse 900px 900px at 100% -10%, rgba(245,166,35,.16), transparent 60%) fixed, #120E08;
-  --bg:#120E08; --s1:rgba(255,255,255,.06); --s2:rgba(255,255,255,.06); --s3:rgba(255,255,255,.12);
+  --bg:#120E08; --s1:rgba(255,255,255,.06); --s2:rgba(255,255,255,.06); --s3:rgba(255,255,255,.12); --s1-solid:#1C1712;
   --acc:#F5A623; --acc2:#FFC966; --accl:#FFC966; --accg:rgba(245,166,35,.45);
   --grn:#4ADE80; --red:#F87171; --ylw:#FBBF24;
   --txt:#F3EDE3; --txt2:#A79E90; --bdr:rgba(245,166,35,.16);
@@ -38,17 +39,18 @@ button,input{font-family:inherit;}
   --acc-tint: rgba(245,166,35,.18); --acc-tint65: rgba(245,166,35,.65);
   --grn-tint: rgba(74,222,128,.18); --red-tint: rgba(248,113,113,.18);
   --ylw-tint: rgba(251,191,36,.18); --ylw-tint-strong: rgba(251,191,36,.4);
-  --glass-bg: rgba(255,255,255,.08); --glass-bg-active: rgba(255,255,255,.14); --glass-border: rgba(245,166,35,.22);
+  --glass-bg: rgba(255,255,255,.15); --glass-bg-active: rgba(255,255,255,.22); --glass-border: rgba(245,166,35,.3);
+  --glass-white-bg: rgba(255,255,255,.15); --glass-white-bg-active: rgba(255,255,255,.22); --glass-white-border: rgba(245,166,35,.3);
   --nav-bg: rgba(18,14,8,.75);
 }
-:root[data-theme="dark"] .card,
-:root[data-theme="dark"] .scard,
-:root[data-theme="dark"] .evo-card,
-:root[data-theme="dark"] .exc,
-:root[data-theme="dark"] .wcard,
-:root[data-theme="dark"] .msheet,
-:root[data-theme="dark"] .dbox{
+/* ── GLASS: aplica vidro fosco a todos os cards, inputs e botões/chips ── */
+.card, .scard, .evo-card, .exc, .wcard, .dbox,
+.tinput, .searchinput, .calinput, .pctinput, .heweight,
+.btn-icon, .btn-prev, .ovback-btn, .hbtn, .lchip, .ltab, .schp,
+.cntbtn, .diffbtn, .mselbtn, .incbtn, .moodbtn{
   backdrop-filter:blur(var(--surface-blur));-webkit-backdrop-filter:blur(var(--surface-blur));
+}
+.card, .scard, .evo-card, .exc, .wcard, .msheet, .dbox{
   border:1px solid var(--bdr);
 }
 :root[data-theme="dark"] .sval{color:var(--acc2);}
@@ -58,7 +60,6 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
      background:var(--page-bg);color:var(--txt);display:flex;justify-content:center;
      height:100%;overflow:hidden;transition:background .3s ease,color .3s ease;}
 .app{width:100%;max-width:480px;height:100vh;height:100dvh;position:relative;display:flex;flex-direction:column;overflow:hidden;}
-@media(min-width:480px){.app{border-left:1px solid var(--bdr);border-right:1px solid var(--bdr);}}
 
 /* ── BOTTOM NAV ── */
 .bottom-nav{
@@ -87,7 +88,7 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 .mbd{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);
   z-index:80;align-items:flex-end;justify-content:center;backdrop-filter:blur(5px);}
 .mbd.on{display:flex;}
-.msheet{background:var(--s1);border-radius:28px 28px 0 0;padding:12px 20px 44px;
+.msheet{background:var(--s1-solid);border-radius:28px 28px 0 0;padding:12px 20px 44px;
   width:100%;max-width:480px;max-height:92vh;overflow-y:auto;
   box-shadow:0 -8px 30px rgba(0,0,0,.12);
   animation:slideUp .3s cubic-bezier(.4,0,.2,1);}
@@ -118,11 +119,11 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 .btn-acc:active{opacity:.85;transform:scale(.98);}
 .btn-grn{background:linear-gradient(135deg,#15803D,#166534);color:#fff;box-shadow:0 4px 16px rgba(21,128,61,.35);}
 .btn-grn:active{transform:scale(.98);}
-.btn-ghost{background:transparent;border:1px solid var(--bdr);color:var(--txt);font-size:14px;font-weight:600;}
-.btn-glass{background:var(--glass-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  border:1px solid var(--glass-border);color:var(--txt);font-size:14px;font-weight:600;
+.btn-ghost{background:var(--glass-bg);backdrop-filter:blur(var(--surface-blur));-webkit-backdrop-filter:blur(var(--surface-blur));border:1px solid var(--bdr);color:var(--txt);font-size:14px;font-weight:600;}
+.btn-glass{background:var(--glass-white-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid var(--glass-white-border);color:var(--txt);font-size:14px;font-weight:600;
   box-shadow:0 4px 16px rgba(23,21,30,.06);}
-.btn-glass:active{background:var(--glass-bg-active);}
+.btn-glass:active{background:var(--glass-white-bg-active);}
 .btn-ghost:active{background:var(--s2);}
 .btn-icon{width:44px;height:44px;border-radius:999px;border:1px solid var(--bdr);
   background:var(--s2);color:var(--txt2);font-size:18px;cursor:pointer;
@@ -137,7 +138,8 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 .tinput::placeholder{color:var(--txt2);font-weight:400;}
 
 .pill{padding:7px 14px;border-radius:100px;border:1.5px solid var(--bdr);
-  background:transparent;color:var(--txt2);font-size:12px;font-weight:600;
+  background:var(--glass-bg);backdrop-filter:blur(var(--surface-blur));-webkit-backdrop-filter:blur(var(--surface-blur));
+  color:var(--txt2);font-size:12px;font-weight:600;
   cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent;}
 .pill.on{border-color:var(--accl);background:var(--acc-tint);color:var(--accl);}
 .pill-row{display:flex;flex-wrap:wrap;gap:8px;}
@@ -151,6 +153,7 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 ══════════════════════════════════════ */
 .hero{padding:52px 20px 0;position:relative;}
 .settings-btn{position:absolute;top:48px;right:20px;}
+.settings-nav-btn{display:none;}
 .greeting{font-size:26px;font-weight:700;margin-bottom:4px;}
 .hero-sub{font-size:14px;color:var(--txt2);margin-bottom:20px;}
 
@@ -170,6 +173,7 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 .cwname{font-size:28px;font-weight:700;margin-bottom:4px;color:#ffffff;line-height:1.15;}
 .cwmeta{font-size:13px;color:rgba(255,255,255,.75);margin-bottom:20px;}
 .ccta{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:#fff;}
+.quicklog-link{display:none;}
 .ccta-ico{width:32px;height:32px;background:rgba(255,255,255,.22);border-radius:50%;
   display:flex;align-items:center;justify-content:center;font-size:12px;}
 
@@ -199,6 +203,8 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 
 /* Weight evolution */
 .evo-wrap{padding:0 20px;margin-bottom:20px;}
+.home-grid{display:contents;}
+.center-wrap{display:contents;}
 .evo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;}
 .evo-card{background:var(--s1);border-radius:var(--rl);box-shadow:0 8px 24px rgba(23,21,30,.06);padding:14px 14px 12px;}
 .evo-exn{font-size:12px;font-weight:600;margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--txt2);}
@@ -210,6 +216,15 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 .evo-delta.down,.evo-delta.flat{color:var(--txt2);}
 .evo-spark{display:block;}
 .evo-nodat{font-size:11px;color:var(--txt2);height:32px;display:flex;align-items:center;}
+.evo-meta{font-size:11px;color:var(--txt2);margin-bottom:8px;}
+
+/* Profile */
+.genrow{display:flex;flex-wrap:wrap;gap:8px;}
+.genbtn{padding:10px 16px;border-radius:999px;border:1.5px solid var(--bdr);background:var(--glass-bg);backdrop-filter:blur(var(--surface-blur));-webkit-backdrop-filter:blur(var(--surface-blur));
+  color:var(--txt2);font-size:13px;font-weight:700;cursor:pointer;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;}
+.genbtn.on{border-color:var(--accl);background:var(--acc-tint);color:var(--accl);}
+.profile-cards{display:flex;flex-direction:column;gap:10px;}
 
 /* ══════════════════════════════════════
    EXECUTE OVERLAY
@@ -238,12 +253,12 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 .exc.skipped{opacity:.55;}
 .skiptag{margin-top:10px;padding-top:10px;border-top:1px solid var(--bdr);font-size:12px;font-weight:700;
   color:var(--ylw);text-transform:uppercase;letter-spacing:.04em;}
-.skipbtn{width:52px;height:52px;border-radius:999px;flex-shrink:0;border:1px solid var(--glass-border);
-  background:var(--glass-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+.skipbtn{width:52px;height:52px;border-radius:999px;flex-shrink:0;border:1px solid var(--glass-white-border);
+  background:var(--glass-white-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   box-shadow:0 4px 16px rgba(23,21,30,.06);
   color:var(--txt2);font-size:20px;cursor:pointer;-webkit-tap-highlight-color:transparent;
   display:flex;align-items:center;justify-content:center;}
-.skipbtn:active{background:var(--glass-bg-active);}
+.skipbtn:active{background:var(--glass-white-bg-active);}
 .skipbtn.on{border-color:var(--ylw);color:var(--ylw);background:var(--ylw-tint);backdrop-filter:none;-webkit-backdrop-filter:none;}
 .wcard{background:var(--s1);border-radius:var(--rl);padding:22px;box-shadow:0 8px 24px rgba(23,21,30,.06);text-align:center;}
 .wlbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2);margin-bottom:18px;}
@@ -278,6 +293,8 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 /* ══════════════════════════════════════
    TREINOS TAB
 ══════════════════════════════════════ */
+.setsec{font-size:17px;font-weight:700;padding:0 20px;margin:20px 0 10px;}
+.setsec:first-child{margin-top:0;}
 .setcard{margin:0 20px 10px;padding:18px;cursor:default;}
 .seth{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;}
 .setnwrap{display:flex;align-items:center;gap:8px;min-width:0;flex:1;}
@@ -311,14 +328,11 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 .heweight{width:60px;flex-shrink:0;background:var(--s2);border:1px solid var(--bdr);border-radius:16px;
   color:var(--txt);font-size:13px;font-weight:700;text-align:center;padding:8px 4px;-webkit-tap-highlight-color:transparent;}
 .setacts{display:flex;gap:8px;}
-.sbtn{flex:1;height:36px;border-radius:10px;border:none;font-size:12px;font-weight:700;
-  cursor:pointer;-webkit-tap-highlight-color:transparent;}
-.sbtn.edit{background:var(--s2);color:var(--txt);}
-.sbtn.actv{background:var(--acc-tint);color:var(--accl);}
-.sbtn.del{background:var(--red-tint);color:var(--red);}
 
 /* Workout letter detail overlay */
 .ovh{padding:52px 20px 0;flex-shrink:0;}
+.ovempty{display:flex;align-items:center;justify-content:center;flex:1;}
+#ov-detail-body{display:none;flex-direction:column;flex:1;min-height:0;}
 .ovscroll{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .ovback{display:flex;align-items:center;gap:10px;margin-bottom:16px;cursor:pointer;}
 .ovback-btn{width:36px;height:36px;border-radius:999px;border:1px solid var(--bdr);background:var(--s1);
@@ -353,7 +367,7 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 
 /* Letter tabs */
 .ltabs{display:flex;gap:8px;padding:0 20px;margin-bottom:14px;flex-wrap:wrap;}
-.ltab{padding:8px 18px;border-radius:100px;border:1.5px solid var(--bdr);background:transparent;
+.ltab{padding:8px 18px;border-radius:100px;border:1.5px solid var(--bdr);background:var(--glass-bg);
   color:var(--txt2);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;
   -webkit-tap-highlight-color:transparent;transition:all .15s;}
 .ltab.on{border-color:var(--accl);background:var(--acc-tint);color:var(--accl);}
@@ -374,7 +388,7 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 
 /* Count buttons */
 .cntrow{display:flex;gap:8px;margin-bottom:16px;}
-.cntbtn{flex:1;height:42px;border-radius:999px;border:1.5px solid var(--bdr);background:transparent;
+.cntbtn{flex:1;height:42px;border-radius:999px;border:1.5px solid var(--bdr);background:var(--glass-bg);
   color:var(--txt2);font-size:13px;font-weight:700;cursor:pointer;
   transition:all .15s;-webkit-tap-highlight-color:transparent;}
 .cntbtn.on{border-color:var(--accl);background:var(--acc-tint);color:var(--accl);}
@@ -415,7 +429,7 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
    EXERCISE FORM
 ══════════════════════════════════════ */
 .diffrow{display:flex;gap:8px;margin-bottom:16px;}
-.diffbtn{flex:1;height:42px;border-radius:999px;border:1.5px solid var(--bdr);background:transparent;
+.diffbtn{flex:1;height:42px;border-radius:999px;border:1.5px solid var(--bdr);background:var(--glass-bg);
   color:var(--txt2);font-size:13px;font-weight:700;cursor:pointer;
   transition:all .15s;-webkit-tap-highlight-color:transparent;}
 .diffbtn.on.facil{border-color:var(--grn);background:var(--grn-tint);color:var(--grn);}
@@ -423,22 +437,29 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 .diffbtn.on.dificil{border-color:var(--red);background:var(--red-tint);color:var(--red);}
 
 .msel{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px;}
-.mselbtn{padding:6px 13px;border-radius:100px;border:1.5px solid var(--bdr);background:transparent;
+.mselbtn{padding:6px 13px;border-radius:100px;border:1.5px solid var(--bdr);background:var(--glass-bg);
   color:var(--txt2);font-size:12px;font-weight:600;cursor:pointer;
   transition:all .15s;-webkit-tap-highlight-color:transparent;}
 .mselbtn.on{border-color:var(--accl);background:var(--acc-tint);color:var(--accl);}
 
-.pctrows{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;}
-.pctrow{display:flex;align-items:center;gap:10px;}
+.pcttable{display:grid;grid-template-columns:1fr auto;margin-bottom:16px;
+  border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden;}
+.pctrow{display:contents;}
+.pctname-cell{display:flex;align-items:center;gap:8px;padding:10px 14px;
+  border-bottom:1px solid var(--bdr);font-size:12px;font-weight:600;}
+.pctval-cell{display:flex;align-items:center;justify-content:flex-end;gap:6px;padding:8px 14px;
+  border-bottom:1px solid var(--bdr);}
+.pctrow:last-child .pctname-cell,.pctrow:last-child .pctval-cell{border-bottom:none;}
+.pcttotal-cell{grid-column:1/-1;display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:10px 14px;}
 .pctdot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-.pctname{font-size:12px;font-weight:600;flex:1;}
-.pctinput{width:64px;background:var(--s2);border:1px solid var(--bdr);border-radius:16px;
+.pctinput{width:56px;background:var(--s2);border:1px solid var(--bdr);border-radius:16px;
   color:var(--txt);font-size:14px;font-weight:700;padding:7px 8px;text-align:center;
-  outline:none;-webkit-appearance:none;}
+  outline:none;-moz-appearance:textfield;}
+.pctinput::-webkit-inner-spin-button,.pctinput::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;}
 .pctinput:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-tint);}
 .pctpct{font-size:12px;color:var(--txt2);}
-.pcttotal{font-size:13px;font-weight:700;text-align:right;margin-bottom:10px;}
-.pcttotal.ok{color:var(--grn);}
+.pcttotal{font-size:13px;font-weight:700;line-height:1;}
+.pcttotal.ok{color:var(--txt);}
 .pcttotal.err{color:var(--red);}
 
 /* ══════════════════════════════════════
@@ -452,7 +473,7 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 .calsfx{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--txt2);pointer-events:none;}
 .moodrow{display:flex;gap:7px;margin-bottom:24px;}
 .moodbtn{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;padding:12px 4px;
-  border-radius:18px;border:2px solid var(--bdr);background:transparent;
+  border-radius:18px;border:2px solid var(--bdr);background:var(--glass-bg);
   cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent;}
 .moodbtn:active{transform:scale(.93);}
 .moodbtn.on{border-color:var(--accl);background:var(--acc-tint);}
@@ -479,7 +500,7 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 
 /* Increment buttons */
 .incrow{display:flex;gap:8px;}
-.incbtn{flex:1;height:38px;border-radius:999px;border:1.5px solid var(--bdr);background:transparent;
+.incbtn{flex:1;height:38px;border-radius:999px;border:1.5px solid var(--bdr);background:var(--glass-bg);
   color:var(--txt2);font-size:12px;font-weight:700;cursor:pointer;
   transition:all .15s;-webkit-tap-highlight-color:transparent;}
 .incbtn.on{border-color:var(--accl);background:var(--acc-tint);color:var(--accl);}
@@ -491,6 +512,114 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
   transition:transform .35s cubic-bezier(.4,0,.2,1);
   white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.4);}
 .toast.on{transform:translateX(-50%) translateY(0);}
+
+/* ══════════════════════════════════════
+   DESKTOP (>=960px) — fica por último de propósito,
+   pra sempre ganhar de qualquer regra base com a mesma especificidade
+═══════════════════════════════════════ */
+@media(min-width:960px){
+  .app{max-width:none;}
+  .bottom-nav{
+    order:-1;align-self:center;position:static;height:auto;width:fit-content;flex-shrink:0;
+    background:var(--glass-white-bg);backdrop-filter:blur(var(--surface-blur));-webkit-backdrop-filter:blur(var(--surface-blur));
+    border:1px solid var(--glass-white-border);border-radius:999px;
+    box-shadow:0 4px 16px rgba(23,21,30,.06);
+    margin:20px 0;padding:6px;justify-content:center;gap:4px;
+  }
+  .nav-btn{flex:none;flex-direction:row;gap:8px;padding:10px 20px;border-radius:999px;
+    color:var(--txt2);-webkit-tap-highlight-color:transparent;}
+  .nav-btn.on{background:var(--acc);color:#fff;}
+  .nav-icon{font-size:17px;}
+  .nav-lbl{font-size:13px;letter-spacing:0;}
+  .btn-icon.settings-btn{display:none;}
+  .nav-btn.settings-nav-btn{display:flex;}
+  /* gavetas viram diálogo centralizado */
+  .mbd{align-items:center;padding:24px;}
+  .mhandle{display:none;}
+  .msheet{border-radius:var(--rl);max-width:520px;max-height:88vh;
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
+    animation:popIn .2s cubic-bezier(.4,0,.2,1);}
+  /* Home: dashboard em grid de 6 colunas, com largura máxima */
+  .home-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:24px;
+    max-width:1400px;margin:0 auto;padding:0 28px 24px;align-items:start;}
+  .hg-next{grid-column:span 6;}
+  .hg-stats{grid-column:span 2;}
+  .hg-mood{grid-column:span 2;}
+  .hg-activity{grid-column:span 2;}
+  .hg-evo{grid-column:span 6;}
+  #tab-home .hero{max-width:1400px;margin:0 auto;padding-left:28px;padding-right:28px;box-sizing:border-box;width:100%;}
+  .hg-next>div:first-child,.hg-stats>div:first-child{padding-left:0;padding-right:0;}
+  .mood-wrap,.hm-wrap,.evo-wrap{padding-left:0;padding-right:0;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .evo-grid{grid-template-columns:repeat(3,1fr);}
+
+  /* Próximo treino: título à esquerda, botão à direita, mesma altura */
+  .hg-next .nwcard{display:flex;align-items:center;justify-content:space-between;gap:20px;}
+  .hg-next .nwcard-top{flex:1;min-width:0;}
+  .hg-next .cbadge,.hg-next .cwname{margin-bottom:6px;}
+  .hg-next .cwmeta{margin-bottom:0;}
+  .hg-next .nwcard-cta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;}
+  .hg-next .ccta{justify-content:flex-end;}
+
+  /* Botão "Ver histórico completo": tamanho do conteúdo, centralizado */
+  .hg-evo .btn-glass{width:auto;display:inline-flex;align-items:center;justify-content:center;
+    margin:0 auto;padding:0 28px;white-space:nowrap;}
+  .hg-evo>div:last-child{text-align:center;padding-left:0;padding-right:0;}
+
+  /* Exercícios: largura máxima + grid de cards */
+  .center-wrap{display:block;max-width:1400px;margin:0 auto;padding:0 28px 24px;width:100%;box-sizing:border-box;}
+  .center-wrap .ph,.center-wrap .searchwrap{padding-left:0;padding-right:0;}
+  #ex-list{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  #ex-list .exlcard{margin:0;}
+
+  /* Treinos: master-detail */
+  #tab-treinos.on{display:grid;grid-template-columns:380px 1fr;grid-template-rows:auto 1fr;
+    gap:0 28px;overflow:hidden;padding:0 28px;max-width:1400px;margin:0 auto;width:100%;}
+  #tab-treinos .ph{grid-column:1/-1;padding-left:0;padding-right:0;}
+  #tab-treinos #sets-list{grid-column:1;grid-row:2;overflow-y:auto;min-height:0;padding-bottom:24px;}
+  #tab-treinos #sets-list .setsec{padding:0;}
+  #tab-treinos #sets-list .setcard{margin:0 0 10px;}
+  #tab-treinos #ov-detail{
+    display:flex !important;flex-direction:column;
+    position:static;grid-column:2;grid-row:2;inset:auto;
+    background:var(--s1-solid);border:1px solid var(--bdr);border-radius:var(--rl);
+    min-height:0;overflow:hidden;margin-bottom:24px;
+  }
+
+  /* Histórico: master-detail */
+  #tab-historico.on{display:grid;grid-template-columns:380px 1fr;grid-template-rows:auto 1fr;
+    gap:0 28px;overflow:hidden;padding:0 28px;max-width:1400px;margin:0 auto;width:100%;}
+  #tab-historico .ph{grid-column:1/-1;padding-left:0;padding-right:0;}
+  #tab-historico #hist-list{grid-column:1;grid-row:2;overflow-y:auto;min-height:0;padding-bottom:24px;}
+  #tab-historico #hist-list .histcard{margin:0 0 10px;}
+  #tab-historico #ov-histedit{
+    display:flex !important;flex-direction:column;
+    position:static;grid-column:2;grid-row:2;inset:auto;
+    background:var(--s1-solid);border:1px solid var(--bdr);border-radius:var(--rl);
+    min-height:0;overflow:hidden;margin-bottom:24px;
+  }
+
+  /* Perfil: master-detail */
+  #tab-perfil.on{display:grid;grid-template-columns:1fr 380px;grid-template-rows:auto 1fr;
+    gap:0 28px;overflow:hidden;padding:0 28px;max-width:1400px;margin:0 auto;width:100%;}
+  #tab-perfil .ph{grid-column:1/-1;padding-left:0;padding-right:0;}
+  #tab-perfil #perfil-main{grid-column:1;grid-row:2;overflow-y:auto;min-height:0;padding-bottom:24px;}
+  #tab-perfil #m-checkins,#tab-perfil #m-checkin-form{
+    display:none;position:static;background:transparent;padding:0;inset:auto;
+    grid-column:2;grid-row:2;min-height:0;
+  }
+  #tab-perfil #m-checkins.on,#tab-perfil #m-checkin-form.on{display:flex;flex-direction:column;}
+  #tab-perfil #m-checkins .msheet,#tab-perfil #m-checkin-form .msheet{
+    width:100%;max-width:none;max-height:none;border-radius:var(--rl);
+    box-shadow:none;border:1px solid var(--bdr);animation:none;flex:1;overflow-y:auto;
+  }
+  #checkins-close-btn{display:none;}
+
+  /* Marcar treino feito (link no card do próximo treino) */
+  button.quicklog-link{display:block;background:none;border:none;color:rgba(255,255,255,.85);
+    font-size:12px;font-weight:700;text-decoration:underline;cursor:pointer;
+    margin-top:10px;padding:0;-webkit-tap-highlight-color:transparent;}
+}
 </style>
 </head>
 <body>
@@ -503,34 +632,54 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
     <h1 class="greeting" id="greeting">Bom dia!</h1>
     <p class="hero-sub">Pronto para treinar?</p>
   </div>
-  <div style="margin:16px 0 8px;padding:0 20px"><div class="slbl">Próximo treino</div></div>
-  <div class="nwcard" id="nwcard" onclick="startWorkout()">
-    <div class="cbadge"><span class="cdot"></span>PROGRAMADO PARA HOJE</div>
-    <div class="cwname" id="cwname">Treino B</div>
-    <div class="cwmeta" id="cwmeta">6 exercícios</div>
-    <div class="ccta"><span>Iniciar treino</span><div class="ccta-ico">▶</div></div>
-  </div>
-  <div style="padding:0 20px"><div class="slbl">Visão geral</div></div>
-  <div class="stats-grid" id="stats-grid"></div>
-  <div class="mood-wrap">
-    <div class="slbl" style="padding:0">Como você se sentiu</div>
-    <div class="card mood-card" id="mood-card"></div>
-  </div>
-  <div class="hm-wrap">
-    <div class="slbl" style="padding:0">Atividade</div>
-    <div class="hm-months" id="hm-months"></div>
-    <div class="hm-grid" id="heatmap"></div>
-    <div class="hm-leg">
-      <span>Menos</span>
-      <div class="hm-sq" style="background:var(--s2)"></div>
-      <div class="hm-sq" style="background:var(--accg)"></div>
-      <div class="hm-sq" style="background:var(--acc)"></div>
-      <span>Mais</span>
+  <div class="home-grid">
+    <div class="hg-next">
+      <div style="margin:16px 0 8px;padding:0 20px"><div class="slbl">Próximo treino</div></div>
+      <div class="nwcard" id="nwcard" onclick="startWorkout()">
+        <div class="nwcard-top">
+          <div class="cbadge"><span class="cdot"></span>PROGRAMADO PARA HOJE</div>
+          <div class="cwname" id="cwname">Treino B</div>
+          <div class="cwmeta" id="cwmeta">6 exercícios</div>
+        </div>
+        <div class="nwcard-cta">
+          <div class="ccta"><span>Iniciar treino</span><div class="ccta-ico">▶</div></div>
+          <button class="quicklog-link" onclick="event.stopPropagation();openQuickLog()">Marcar treino feito ✓</button>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="evo-wrap">
-    <div class="slbl" style="padding:0">Evolução de peso</div>
-    <div class="evo-grid" id="evo-grid"></div>
+    <div class="hg-stats">
+      <div style="padding:0 20px"><div class="slbl">Visão geral</div></div>
+      <div class="stats-grid" id="stats-grid"></div>
+    </div>
+    <div class="hg-mood">
+      <div class="mood-wrap">
+        <div class="slbl" style="padding:0">Como você se sentiu</div>
+        <div class="card mood-card" id="mood-card"></div>
+      </div>
+    </div>
+    <div class="hg-activity">
+      <div class="hm-wrap">
+        <div class="slbl" style="padding:0">Atividade</div>
+        <div class="hm-months" id="hm-months"></div>
+        <div class="hm-grid" id="heatmap"></div>
+        <div class="hm-leg">
+          <span>Menos</span>
+          <div class="hm-sq" style="background:var(--s2)"></div>
+          <div class="hm-sq" style="background:var(--accg)"></div>
+          <div class="hm-sq" style="background:var(--acc)"></div>
+          <span>Mais</span>
+        </div>
+      </div>
+    </div>
+    <div class="hg-evo">
+      <div class="evo-wrap">
+        <div class="slbl" style="padding:0">Evolução de peso</div>
+        <div class="evo-grid" id="evo-grid"></div>
+      </div>
+      <div style="padding:0 20px 4px">
+        <button class="btn btn-glass" onclick="switchTab('historico')">Ver histórico completo</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -541,22 +690,165 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
     <button class="btn-icon" onclick="openSetForm()" title="Novo conjunto">＋</button>
   </div>
   <div id="sets-list"></div>
+  <div class="overlay" id="ov-detail">
+    <div class="ovempty" id="ov-empty">
+      <div class="empty"><div class="empty-ico">📋</div><div class="empty-ttl">Selecione um treino para editar</div></div>
+    </div>
+    <div id="ov-detail-body" style="display:none">
+      <div class="ovh">
+        <div class="ovback" onclick="tryCloseDetail()">
+          <button class="ovback-btn">‹</button>
+          <span style="font-size:13px;color:var(--txt2)">Treinos</span>
+        </div>
+        <div class="flbl" style="margin-top:6px">Nome do programa</div>
+        <input class="tinput" id="ov-name" placeholder="Nome do programa" style="margin-bottom:14px" oninput="markDirty()">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+          <div>
+            <div style="font-size:14px;font-weight:700">Programa ativo</div>
+            <div style="font-size:12px;color:var(--txt2);margin-top:2px">Usar como treino atual</div>
+          </div>
+          <label class="sw"><input type="checkbox" id="ov-active" onchange="markDirty()"><span class="sw-track"></span></label>
+        </div>
+        <div class="distbar" id="ov-distbar"></div>
+        <div class="distleg" id="ov-distleg"></div>
+        <div class="distwarn" id="ov-distwarn">⚠️ Distribuição muscular desbalanceada — sem exercícios para um grupo importante.</div>
+      </div>
+      <div class="ltabs" id="ov-ltabs" style="margin-top:16px"></div>
+      <div style="padding:2px 20px 8px;display:flex;align-items:center;justify-content:space-between">
+        <div style="font-size:12px;color:var(--txt2)" id="ov-wsub">0 exercícios</div>
+        <button class="btn-icon" onclick="openAddExModal()" title="Adicionar exercício">＋</button>
+      </div>
+      <div class="ovscroll">
+        <div class="card" style="margin:0 20px 12px;overflow:hidden" id="ov-exlist"></div>
+      </div>
+      <div style="padding:12px 20px calc(12px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;flex-shrink:0;border-top:1px solid var(--bdr)">
+        <button class="btn btn-acc" onclick="saveDetail()">Salvar alterações</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ══════════════ EXERCÍCIOS ══════════════ -->
 <div class="tab" id="tab-exercicios">
-  <div class="ph"><div class="ptitle">Exercícios</div></div>
-  <div class="searchwrap">
-    <span class="searchico">🔍</span>
-    <input class="searchinput" id="exsearch" placeholder="Buscar exercício…" oninput="renderExList(this.value)">
+  <div class="center-wrap">
+    <div class="ph">
+      <div class="ptitle">Exercícios</div>
+      <button class="btn-icon" onclick="openExForm(null)" title="Novo exercício">＋</button>
+    </div>
+    <div class="searchwrap">
+      <span class="searchico">🔍</span>
+      <input class="searchinput" id="exsearch" placeholder="Buscar exercício…" oninput="renderExList(this.value)">
+    </div>
+    <div id="ex-list"></div>
   </div>
-  <div id="ex-list"></div>
 </div>
 
 <!-- ══════════════ HISTÓRICO ══════════════ -->
 <div class="tab" id="tab-historico">
   <div class="ph"><div class="ptitle">Histórico</div></div>
   <div id="hist-list"></div>
+  <div class="overlay" id="ov-histedit">
+    <div class="ovempty" id="ov-histedit-empty">
+      <div class="empty"><div class="empty-ico">🕒</div><div class="empty-ttl">Selecione um registro para editar</div></div>
+    </div>
+    <div id="ov-histedit-body" style="display:none">
+      <div class="ovh">
+        <div class="ovback" onclick="closeHistEdit()">
+          <button class="ovback-btn">‹</button>
+          <span style="font-size:13px;color:var(--txt2)">Histórico</span>
+        </div>
+        <div class="flbl" style="margin-top:6px">Data</div>
+        <input class="tinput" type="date" id="he-date" style="margin-bottom:14px">
+        <div class="flbl">Calorias <span class="otag">(opcional)</span></div>
+        <div class="calwrap">
+          <input type="number" class="calinput" id="he-cal" placeholder="0" inputmode="numeric" min="0" max="9999">
+          <span class="calsfx">kcal</span>
+        </div>
+        <div class="flbl">Humor sobre o treino</div>
+        <div class="moodrow" id="he-moodrow"></div>
+      </div>
+      <div style="padding:2px 20px 8px;font-size:12px;color:var(--txt2)" id="he-sub">0 exercícios</div>
+      <div class="ovscroll">
+        <div class="card" style="margin:0 20px 12px;overflow:hidden" id="he-exlist"></div>
+      </div>
+      <div style="padding:12px 20px calc(12px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;flex-shrink:0;border-top:1px solid var(--bdr)">
+        <button class="btn btn-acc" onclick="saveHistEdit()">Salvar alterações</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PERFIL ══════════════ -->
+<div class="tab" id="tab-perfil">
+  <div class="ph"><div class="ptitle">Perfil</div></div>
+  <div id="perfil-main">
+  <div style="padding:0 20px">
+    <div class="flbl">Gênero</div>
+    <div class="genrow" id="gender-row" style="margin-top:8px;margin-bottom:22px"></div>
+  </div>
+
+  <div style="padding:0 20px">
+    <div class="flbl">Metas <span class="otag">(opcional)</span></div>
+    <div style="display:flex;gap:10px;margin-top:8px;margin-bottom:22px">
+      <div style="flex:1">
+        <label style="font-size:11px;color:var(--txt2);display:block;margin-bottom:4px">Peso (kg)</label>
+        <input class="tinput" type="number" id="target-weight" inputmode="decimal" placeholder="—" oninput="saveTarget('targetWeight',this.value)">
+      </div>
+      <div style="flex:1">
+        <label style="font-size:11px;color:var(--txt2);display:block;margin-bottom:4px">% Gordura</label>
+        <input class="tinput" type="number" id="target-bodyfat" inputmode="decimal" placeholder="—" oninput="saveTarget('targetBodyfat',this.value)">
+      </div>
+      <div style="flex:1">
+        <label style="font-size:11px;color:var(--txt2);display:block;margin-bottom:4px">Músculo (kg)</label>
+        <input class="tinput" type="number" id="target-muscle" inputmode="decimal" placeholder="—" oninput="saveTarget('targetMuscle',this.value)">
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:0 20px">
+    <div class="flbl" style="margin-bottom:10px">Acompanhamento</div>
+    <div class="profile-cards" id="profile-cards"></div>
+    <button class="btn btn-acc" style="margin-top:14px" onclick="openCheckinForm(null)">+ Novo registro</button>
+  </div>
+  </div>
+
+  <!-- ══════════════ MODAL: CHECK-INS (lista) ══════════════ -->
+  <div class="mbd" id="m-checkins">
+    <div class="msheet">
+      <div class="mhandle"></div>
+      <div class="mtitle">Registros</div>
+      <div id="checkins-list" style="margin-bottom:14px"></div>
+      <button class="btn btn-acc" onclick="openCheckinForm(null)">+ Novo registro</button>
+      <button class="btn btn-ghost" id="checkins-close-btn" onclick="hideModal('m-checkins')" style="margin-top:8px">Fechar</button>
+    </div>
+  </div>
+
+  <!-- ══════════════ MODAL: CHECK-IN (form) ══════════════ -->
+  <div class="mbd" id="m-checkin-form">
+    <div class="msheet">
+      <div class="mhandle"></div>
+      <div class="mtitle" id="checkin-form-title">Novo registro</div>
+      <div class="flbl">Data</div>
+      <input class="tinput" type="date" id="checkin-date" style="margin-bottom:14px">
+      <div style="display:flex;gap:10px;margin-bottom:16px">
+        <div style="flex:1">
+          <label style="font-size:11px;color:var(--txt2);display:block;margin-bottom:4px">Peso (kg)</label>
+          <input class="tinput" type="number" id="checkin-weight" inputmode="decimal" placeholder="—">
+        </div>
+        <div style="flex:1">
+          <label style="font-size:11px;color:var(--txt2);display:block;margin-bottom:4px">% Gordura</label>
+          <input class="tinput" type="number" id="checkin-bodyfat" inputmode="decimal" placeholder="—">
+        </div>
+        <div style="flex:1">
+          <label style="font-size:11px;color:var(--txt2);display:block;margin-bottom:4px">Músculo (kg)</label>
+          <input class="tinput" type="number" id="checkin-muscle" inputmode="decimal" placeholder="—">
+        </div>
+      </div>
+      <button class="btn btn-acc" onclick="saveCheckin()">Salvar</button>
+      <button class="btn" id="checkin-del-btn" style="background:#EF4444;color:#fff;margin-top:8px" onclick="deleteCheckin()">Excluir registro</button>
+      <button class="btn btn-ghost" onclick="hideModal('m-checkin-form');showModal('m-checkins')" style="margin-top:8px">Cancelar</button>
+    </div>
+  </div>
 </div>
 
 <!-- FAB exercises -->
@@ -567,7 +859,8 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
   <button class="nav-btn on" id="nav-home"      onclick="switchTab('home')"><span class="nav-icon">🏠</span><span class="nav-lbl">Home</span></button>
   <button class="nav-btn"    id="nav-treinos"   onclick="switchTab('treinos')"><span class="nav-icon">📋</span><span class="nav-lbl">Treinos</span></button>
   <button class="nav-btn"    id="nav-exercicios" onclick="switchTab('exercicios')"><span class="nav-icon">💪</span><span class="nav-lbl">Exercícios</span></button>
-  <button class="nav-btn"    id="nav-historico" onclick="switchTab('historico')"><span class="nav-icon">🕒</span><span class="nav-lbl">Histórico</span></button>
+  <button class="nav-btn"    id="nav-perfil" onclick="switchTab('perfil')"><span class="nav-icon">👤</span><span class="nav-lbl">Perfil</span></button>
+  <button class="nav-btn settings-nav-btn" onclick="openSettings()"><span class="nav-icon">⚙️</span><span class="nav-lbl">Configurações</span></button>
 </nav>
 
 <!-- ══════════════ OVERLAY: EXECUTE ══════════════ -->
@@ -585,63 +878,6 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
     <button class="btn-prev" id="btn-prev" onclick="prevEx()" disabled>‹</button>
     <button class="btn-nxt go" id="btn-nxt" onclick="nextEx()">Próximo →</button>
     <button class="skipbtn" id="skip-btn" onclick="toggleSkip()">⏭</button>
-  </div>
-</div>
-
-<!-- ══════════════ OVERLAY: WORKOUT DETAIL ══════════════ -->
-<div class="overlay" id="ov-detail">
-  <div class="ovh">
-    <div class="ovback" onclick="tryCloseDetail()">
-      <button class="ovback-btn">‹</button>
-      <span style="font-size:13px;color:var(--txt2)">Treinos</span>
-    </div>
-    <div class="flbl" style="margin-top:6px">Nome do programa</div>
-    <input class="tinput" id="ov-name" placeholder="Nome do programa" style="margin-bottom:14px" oninput="markDirty()">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-      <div>
-        <div style="font-size:14px;font-weight:700">Programa ativo</div>
-        <div style="font-size:12px;color:var(--txt2);margin-top:2px">Usar como treino atual</div>
-      </div>
-      <label class="sw"><input type="checkbox" id="ov-active" onchange="markDirty()"><span class="sw-track"></span></label>
-    </div>
-    <div class="distbar" id="ov-distbar"></div>
-    <div class="distleg" id="ov-distleg"></div>
-    <div class="distwarn" id="ov-distwarn">⚠️ Distribuição muscular desbalanceada — sem exercícios para um grupo importante.</div>
-  </div>
-  <div class="ltabs" id="ov-ltabs" style="margin-top:16px"></div>
-  <div style="padding:2px 20px 8px;font-size:12px;color:var(--txt2)" id="ov-wsub">0 exercícios</div>
-  <div class="ovscroll">
-    <div class="card" style="margin:0 20px 12px;overflow:hidden" id="ov-exlist"></div>
-  </div>
-  <div style="padding:12px 20px calc(12px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;flex-shrink:0;border-top:1px solid var(--bdr)">
-    <button class="btn btn-ghost" onclick="openAddExModal()">+ Adicionar exercício</button>
-    <button class="btn btn-acc" onclick="saveDetail()">Salvar alterações</button>
-  </div>
-</div>
-
-<!-- ══════════════ OVERLAY: HISTORY EDIT ══════════════ -->
-<div class="overlay" id="ov-histedit">
-  <div class="ovh">
-    <div class="ovback" onclick="closeHistEdit()">
-      <button class="ovback-btn">‹</button>
-      <span style="font-size:13px;color:var(--txt2)">Histórico</span>
-    </div>
-    <div class="flbl" style="margin-top:6px">Data</div>
-    <input class="tinput" type="date" id="he-date" style="margin-bottom:14px">
-    <div class="flbl">Calorias <span class="otag">(opcional)</span></div>
-    <div class="calwrap">
-      <input type="number" class="calinput" id="he-cal" placeholder="0" inputmode="numeric" min="0" max="9999">
-      <span class="calsfx">kcal</span>
-    </div>
-    <div class="flbl">Humor sobre o treino</div>
-    <div class="moodrow" id="he-moodrow"></div>
-  </div>
-  <div style="padding:2px 20px 8px;font-size:12px;color:var(--txt2)" id="he-sub">0 exercícios</div>
-  <div class="ovscroll">
-    <div class="card" style="margin:0 20px 12px;overflow:hidden" id="he-exlist"></div>
-  </div>
-  <div style="padding:12px 20px calc(12px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;flex-shrink:0;border-top:1px solid var(--bdr)">
-    <button class="btn btn-acc" onclick="saveHistEdit()">Salvar alterações</button>
   </div>
 </div>
 
@@ -670,11 +906,31 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
     </div>
     <div class="flbl">Backup</div>
     <div style="display:flex;gap:10px;margin-top:10px;margin-bottom:16px">
-      <button class="btn btn-glass" style="flex:1;height:44px" onclick="exportBackup()">⬇️ Exportar</button>
-      <button class="btn btn-glass" style="flex:1;height:44px" onclick="document.getElementById('import-file').click()">⬆️ Importar</button>
+      <button class="btn btn-ghost" style="flex:1;height:44px" onclick="exportBackup()">⬇️ Exportar</button>
+      <button class="btn btn-ghost" style="flex:1;height:44px" onclick="document.getElementById('import-file').click()">⬆️ Importar</button>
     </div>
     <input type="file" id="import-file" accept="application/json,.json" style="display:none" onchange="importBackup(this)">
     <button class="btn btn-ghost" onclick="hideModal('m-settings')" style="margin-top:8px">Fechar</button>
+  </div>
+</div>
+
+<!-- ══════════════ MODAL: MARCAR TREINO FEITO (desktop) ══════════════ -->
+<div class="mbd" id="m-quicklog">
+  <div class="msheet">
+    <div class="mhandle"></div>
+    <div class="mtitle">Marcar treino feito</div>
+    <div class="flbl">Treino</div>
+    <div class="ltabs" id="ql-ltabs" style="margin:8px 0 16px"></div>
+    <div id="ql-exlist" style="margin-bottom:16px"></div>
+    <div class="flbl">Calorias <span class="otag">(opcional)</span></div>
+    <div class="calwrap">
+      <input type="number" class="calinput" id="ql-cal" placeholder="0" inputmode="numeric" min="0" max="9999">
+      <span class="calsfx">kcal</span>
+    </div>
+    <div class="flbl">Humor sobre o treino</div>
+    <div class="moodrow" id="ql-moodrow"></div>
+    <button class="btn btn-grn" onclick="saveQuickLog()">Concluir treino</button>
+    <button class="btn btn-ghost" onclick="hideModal('m-quicklog')" style="margin-top:8px">Cancelar</button>
   </div>
 </div>
 
@@ -730,9 +986,7 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
     </div>
     <div class="flbl">Grupos musculares</div>
     <div class="msel" id="msel"></div>
-    <div class="pctrows" id="pctrows"></div>
-    <div class="pcttotal" id="pcttotal"></div>
-    <button class="btn btn-ghost" style="height:38px;font-size:12px;margin-bottom:12px" onclick="autoDist()">↕ Distribuir igualmente</button>
+    <div class="pcttable" id="pctrows"></div>
     <button class="btn btn-acc" onclick="saveEx()">Salvar exercício</button>
     <button class="btn btn-ghost" onclick="hideModal('m-exform')" style="margin-top:8px">Cancelar</button>
   </div>
@@ -847,6 +1101,12 @@ const MOOD=[
 ];
 function moodInfo(id){return MOOD.find(m=>m.id===id)||null;}
 
+const GENDERS=[
+  {id:'feminino',label:'Feminino'},
+  {id:'masculino',label:'Masculino'},
+  {id:'outro',label:'Outro'},
+];
+
 /* ═══════════════════════════════════════
    SEED DATA — Ficha Bruna Mendonça Schmitz v2
 ═══════════════════════════════════════ */
@@ -951,6 +1211,7 @@ const SK='fitflow_v5';
 let db=null;
 try{const r=localStorage.getItem(SK);db=r?JSON.parse(r):null;}catch{}
 if(!db)db={exercises:SEED_EX,workoutSets:[SEED_SET],activeSetId:'set1',nextLetter:'A',history:[]};
+if(!db.profile)db.profile={gender:null,targetWeight:null,targetBodyfat:null,targetMuscle:null,checkins:[]};
 
 function save(){try{localStorage.setItem(SK,JSON.stringify(db));}catch{}}
 
@@ -1049,6 +1310,21 @@ function initTheme(){
   document.documentElement.dataset.theme=theme;
 }
 initTheme();
+
+/* ═══════════════════════════════════════
+   DESKTOP / RESPONSIVE
+═══════════════════════════════════════ */
+function isDesktop(){return window.matchMedia('(min-width:960px)').matches;}
+let _lastIsDesktop=isDesktop();
+window.addEventListener('resize',()=>{
+  const nowDesktop=isDesktop();
+  if(nowDesktop!==_lastIsDesktop){
+    _lastIsDesktop=nowDesktop;
+    const activeTab=document.querySelector('.tab.on')?.id.replace('tab-','');
+    if(activeTab)switchTab(activeTab);
+  }
+});
+
 function showModal(id){document.getElementById(id).classList.add('on');}
 function hideModal(id){document.getElementById(id).classList.remove('on');}
 function showDlg(id){document.getElementById(id).classList.add('on');}
@@ -1065,12 +1341,12 @@ function switchTab(tab){
   const el=document.getElementById('tab-'+tab);
   el.classList.add('on');
   el.scrollTop=0;
-  document.getElementById('nav-'+tab).classList.add('on');
-  document.getElementById('fab').classList.toggle('hide',tab!=='exercicios');
+  document.getElementById('nav-'+tab)?.classList.add('on');
   if(tab==='home')renderHome();
   if(tab==='treinos')renderSets();
   if(tab==='exercicios')renderExList('');
   if(tab==='historico')renderHistList();
+  if(tab==='perfil'){renderProfile();if(isDesktop())openCheckinList();}
 }
 
 /* ═══════════════════════════════════════
@@ -1215,6 +1491,127 @@ function renderEvo(){
 }
 
 /* ═══════════════════════════════════════
+   PERFIL
+═══════════════════════════════════════ */
+function renderProfile(){
+  document.getElementById('gender-row').innerHTML=GENDERS.map(g=>
+    `<button class="genbtn${db.profile.gender===g.id?' on':''}" onclick="selectGender('${g.id}')">${g.label}</button>`
+  ).join('');
+  document.getElementById('target-weight').value=db.profile.targetWeight??'';
+  document.getElementById('target-bodyfat').value=db.profile.targetBodyfat??'';
+  document.getElementById('target-muscle').value=db.profile.targetMuscle??'';
+  renderProfileCards();
+}
+
+function selectGender(id){db.profile.gender=id;save();renderProfile();}
+
+function saveTarget(key,val){
+  const n=parseFloat(val);
+  db.profile[key]=val===''?null:(isNaN(n)?null:n);
+  save();renderProfileCards();
+}
+
+function profileMetricCard(field,label,unit,targetKey){
+  const sorted=[...db.profile.checkins].sort((a,b)=>a.date-b.date).map(c=>c[field]).filter(v=>v!=null).slice(-12);
+  const current=sorted.length?sorted[sorted.length-1]:null;
+  const target=db.profile[targetKey];
+  let deltaHtml='',bottomHtml,metaHtml='';
+  if(sorted.length>=2){
+    const delta=sorted[sorted.length-1]-sorted[0];
+    const cls=delta>0?'up':delta<0?'down':'flat';
+    const arrow=delta>0?'▲':delta<0?'▼':'—';
+    deltaHtml=`<span class="evo-delta ${cls}">${delta===0?'—':`${arrow} ${delta>0?'+':''}${delta.toFixed(1)}${unit}`}</span>`;
+    bottomHtml=sparkline(sorted);
+  }else{
+    bottomHtml=`<div class="evo-nodat">${sorted.length?'Só um registro ainda':'Sem registros ainda'}</div>`;
+  }
+  if(target!=null){
+    if(current==null)metaHtml=`<div class="evo-meta">Meta: ${target}${unit}</div>`;
+    else{
+      const diff=target-current;
+      metaHtml=Math.abs(diff)<0.05
+        ?`<div class="evo-meta">🎉 Meta atingida (${target}${unit})</div>`
+        :`<div class="evo-meta">Meta: ${target}${unit} · faltam ${Math.abs(diff).toFixed(1)}${unit} para ${diff>0?'ganhar':'reduzir'}</div>`;
+    }
+  }
+  return`<div class="evo-card" onclick="openCheckinList()">
+    <div class="evo-exn">${label}</div>
+    <div class="evo-valrow"><span class="evo-val">${current!=null?current:'—'}<span class="evo-unit">${unit}</span></span>${deltaHtml}</div>
+    ${metaHtml}
+    ${bottomHtml}
+  </div>`;
+}
+
+function renderProfileCards(){
+  document.getElementById('profile-cards').innerHTML=
+    profileMetricCard('weight','Peso','kg','targetWeight')+
+    profileMetricCard('bodyfat','% Gordura','%','targetBodyfat')+
+    profileMetricCard('muscle','Kg Músculo','kg','targetMuscle');
+}
+
+function openCheckinList(){renderCheckinsList();showModal('m-checkins');}
+
+function renderCheckinsList(){
+  const el=document.getElementById('checkins-list');
+  const list=[...db.profile.checkins].sort((a,b)=>b.date-a.date);
+  if(!list.length){el.innerHTML=`<div class="empty" style="padding:20px 0"><div class="empty-ico">📋</div><div class="empty-ttl" style="font-size:14px">Nenhum registro ainda</div></div>`;return;}
+  el.innerHTML=list.map(c=>{
+    const d=new Date(c.date).toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'});
+    const parts=[];
+    if(c.weight!=null)parts.push(`${c.weight}kg`);
+    if(c.bodyfat!=null)parts.push(`${c.bodyfat}% gordura`);
+    if(c.muscle!=null)parts.push(`${c.muscle}kg músculo`);
+    return`<div class="wexrow" style="cursor:pointer" onclick="openCheckinForm('${c.id}')">
+      <div class="wexinfo"><div class="wexname">${d}</div><div class="wexmeta">${parts.join(' · ')||'Sem valores'}</div></div>
+    </div>`;
+  }).join('');
+}
+
+let _editCheckinId=null;
+function openCheckinForm(id){
+  _editCheckinId=id;
+  const c=id?db.profile.checkins.find(x=>x.id===id):null;
+  document.getElementById('checkin-form-title').textContent=id?'Editar registro':'Novo registro';
+  document.getElementById('checkin-date').value=toDateInputVal(c?c.date:Date.now());
+  document.getElementById('checkin-weight').value=c&&c.weight!=null?c.weight:'';
+  document.getElementById('checkin-bodyfat').value=c&&c.bodyfat!=null?c.bodyfat:'';
+  document.getElementById('checkin-muscle').value=c&&c.muscle!=null?c.muscle:'';
+  document.getElementById('checkin-del-btn').style.display=id?'block':'none';
+  hideModal('m-checkins');
+  showModal('m-checkin-form');
+}
+
+function saveCheckin(){
+  const dateVal=document.getElementById('checkin-date').value;
+  if(!dateVal){toast('Selecione uma data','var(--red)');return;}
+  const [y,mo,da]=dateVal.split('-').map(Number);
+  const ts=new Date(y,mo-1,da,12,0,0).getTime();
+  const weight=parseFloat(document.getElementById('checkin-weight').value);
+  const bodyfat=parseFloat(document.getElementById('checkin-bodyfat').value);
+  const muscle=parseFloat(document.getElementById('checkin-muscle').value);
+  const data={
+    weight:isNaN(weight)?null:weight,
+    bodyfat:isNaN(bodyfat)?null:bodyfat,
+    muscle:isNaN(muscle)?null:muscle,
+  };
+  if(data.weight==null&&data.bodyfat==null&&data.muscle==null){toast('Preencha pelo menos um valor','var(--red)');return;}
+  if(_editCheckinId){
+    const c=db.profile.checkins.find(x=>x.id===_editCheckinId);
+    if(c){c.date=ts;Object.assign(c,data);}
+  }else{
+    db.profile.checkins.push({id:uid(),date:ts,...data});
+  }
+  save();hideModal('m-checkin-form');renderProfileCards();toast('Registro salvo!');
+}
+
+function deleteCheckin(){
+  if(!_editCheckinId)return;
+  if(!confirm('Remover este registro?'))return;
+  db.profile.checkins=db.profile.checkins.filter(c=>c.id!==_editCheckinId);
+  save();hideModal('m-checkin-form');renderProfileCards();toast('Registro removido','var(--red)');
+}
+
+/* ═══════════════════════════════════════
    EXECUTION
 ═══════════════════════════════════════ */
 function checkExpiry(){
@@ -1225,6 +1622,68 @@ function checkExpiry(){
     sess=s;document.getElementById('ex-wn').textContent=sess.workoutName;
     buildSlides();positionCarousel();updateProgress();updateNavBtns();showOverlay('ov-exec');
   }catch{sessionStorage.removeItem('fitflow_sess');}
+}
+
+/* ═══════════════════════════════════════
+   MARCAR TREINO FEITO (desktop, sem carrossel)
+═══════════════════════════════════════ */
+let _qlLetter=null,_qlMood=null,_qlWeights={};
+
+function openQuickLog(){
+  const set=getActiveSet();if(!set){toast('Nenhum programa ativo','var(--red)');return;}
+  _qlLetter=db.nextLetter&&set.workouts.some(w=>w.letter===db.nextLetter)?db.nextLetter:set.workouts[0]?.letter;
+  _qlMood=null;_qlWeights={};
+  document.getElementById('ql-cal').value='';
+  renderQlLtabs();renderQlExlist();renderQlMood();
+  showModal('m-quicklog');
+}
+
+function selQlLetter(letter){_qlLetter=letter;_qlWeights={};renderQlLtabs();renderQlExlist();}
+
+function renderQlLtabs(){
+  const set=getActiveSet();if(!set)return;
+  document.getElementById('ql-ltabs').innerHTML=set.workouts.map(w=>
+    `<button class="ltab${w.letter===_qlLetter?' on':''}" onclick="selQlLetter('${w.letter}')">${w.name}</button>`
+  ).join('');
+}
+
+function renderQlExlist(){
+  const set=getActiveSet();const workout=set?.workouts.find(w=>w.letter===_qlLetter);
+  const exes=workout?.exercises||[];
+  document.getElementById('ql-exlist').innerHTML=exes.map(we=>{
+    const ex=getEx(we.exId);
+    return`<div class="wexrow">
+      <div class="wexinfo"><div class="wexname">${ex?ex.name:'?'}</div><div class="wexmeta">${we.scheme}</div></div>
+      ${we.increment>0?`<input type="number" class="heweight" min="0" value="${we.weight}" oninput="_qlWeights['${we.exId}']=parseFloat(this.value)||0">`:''}
+    </div>`;
+  }).join('');
+}
+
+function renderQlMood(){
+  document.getElementById('ql-moodrow').innerHTML=MOOD.map(m=>
+    `<button class="moodbtn${m.id===_qlMood?' on':''}" onclick="pickQlMood('${m.id}')"><span class="moodico">${m.emoji}</span><span class="moodtxt">${m.label}</span></button>`
+  ).join('');
+}
+function pickQlMood(id){_qlMood=id;renderQlMood();}
+
+function saveQuickLog(){
+  const set=getActiveSet();const workout=set?.workouts.find(w=>w.letter===_qlLetter);
+  if(!set||!workout)return;
+  const now=Date.now();
+  const exercises=workout.exercises.map(we=>({
+    exId:we.exId,scheme:we.scheme,
+    weight:_qlWeights[we.exId]!=null?_qlWeights[we.exId]:we.weight,
+    skipped:false,
+  }));
+  db.history.push({id:uid(),setId:set.id,letter:_qlLetter,iniciado_em:now,finalizado_em:now,
+    calories:parseInt(document.getElementById('ql-cal').value)||0,mood:_qlMood,exercises});
+  exercises.forEach(se=>{const we=workout.exercises.find(e=>e.exId===se.exId);if(we)we.weight=se.weight;});
+  if(db.activeSetId===set.id){
+    const idx=set.workouts.findIndex(w=>w.letter===_qlLetter);
+    db.nextLetter=set.workouts[(idx+1)%set.workouts.length].letter;
+  }
+  save();hideModal('m-quicklog');renderHome();
+  toast('Treino marcado como feito!');
 }
 
 function startWorkout(){
@@ -1359,12 +1818,14 @@ function toggleM(id,btn){
 
 function renderPctRows(){
   const keys=Object.keys(_muscles);
-  document.getElementById('pctrows').innerHTML=keys.map(id=>{const m=MG.find(x=>x.id===id);return`<div class="pctrow"><div class="pctdot" style="background:${m.color}"></div><div class="pctname">${m.label}</div><input class="pctinput" type="number" min="0" max="100" value="${_muscles[id]}" oninput="onPct('${id}',this.value)"><div class="pctpct">%</div></div>`;}).join('');
+  const rows=keys.map(id=>{const m=MG.find(x=>x.id===id);return`<div class="pctrow"><div class="pctname-cell"><span class="pctdot" style="background:${m.color}"></span>${m.label}</div><div class="pctval-cell"><input class="pctinput" type="number" min="0" max="100" value="${_muscles[id]}" oninput="onPct('${id}',this.value)"><span class="pctpct">%</span></div></div>`;}).join('');
+  const totalRow=`<div class="pctrow"><div class="pcttotal-cell"><button class="btn btn-ghost" style="width:auto;height:32px;font-size:11px;padding:0 14px" onclick="autoDist()">Distribuir igualmente</button><span id="pcttotal"></span></div></div>`;
+  document.getElementById('pctrows').innerHTML=rows+totalRow;
   updTotal();
 }
 
 function onPct(id,v){_muscles[id]=parseInt(v)||0;updTotal();}
-function updTotal(){const t=Object.values(_muscles).reduce((s,v)=>s+v,0);const el=document.getElementById('pcttotal');el.textContent=`Total: ${t}/100`;el.className='pcttotal '+(t===100?'ok':'err');}
+function updTotal(){const t=Object.values(_muscles).reduce((s,v)=>s+v,0);const el=document.getElementById('pcttotal');if(!el)return;el.textContent=`Total: ${t}/100`;el.className='pcttotal '+(t===100?'ok':'err');}
 function autoDist(){const keys=Object.keys(_muscles);if(!keys.length)return;const b=Math.floor(100/keys.length);keys.forEach((k,i)=>{_muscles[k]=b+(i===0?100-b*keys.length:0);});renderPctRows();}
 
 function saveEx(){
@@ -1387,33 +1848,33 @@ let _setSelLetter={};
 
 function selInlineLetter(setId,letter){_setSelLetter[setId]=letter;renderSets();}
 
+function renderSetCard(set){
+  const isAct=set.id===db.activeSetId;
+  const selLetter=_setSelLetter[set.id]||(isAct?db.nextLetter:set.workouts[0]?.letter);
+  const chips=set.workouts.map(w=>`<button class="lchip${w.letter===db.nextLetter&&isAct?' cur':''}${w.letter===selLetter?' sel':''}" onclick="selInlineLetter('${set.id}','${w.letter}')">${w.name}</button>`).join('');
+  const workout=set.workouts.find(w=>w.letter===selLetter);
+  const exes=workout?.exercises||[];
+  const exlist=exes.length
+    ?exes.map(we=>{const ex=getEx(we.exId);return`<div class="exrow"><b>${ex?ex.name:'?'}</b> <span class="exrow-scheme">(${we.scheme})</span></div>`;}).join('')
+    :`<div class="exrow exrow-empty">Nenhum exercício ainda</div>`;
+  return`<div class="card setcard"><div class="seth"><div class="setnwrap"><div class="setn"${!isAct?` onclick="activateSet('${set.id}')" style="cursor:pointer"`:''}>${set.name}</div></div><button class="hbtn" onclick="openDetail('${set.id}')">✏️ Editar</button></div><div class="setletters">${chips}</div><div class="setexlist">${exlist}</div></div>`;
+}
+
 function renderSets(){
   const c=document.getElementById('sets-list');
   if(!db.workoutSets.length){c.innerHTML=`<div class="empty"><div class="empty-ico">📋</div><div class="empty-ttl">Nenhum conjunto</div></div>`;return;}
-  c.innerHTML=[...db.workoutSets].reverse().map(set=>{
-    const isAct=set.id===db.activeSetId;
-    const selLetter=_setSelLetter[set.id]||(isAct?db.nextLetter:set.workouts[0]?.letter);
-    const chips=set.workouts.map(w=>`<button class="lchip${w.letter===db.nextLetter&&isAct?' cur':''}${w.letter===selLetter?' sel':''}" onclick="selInlineLetter('${set.id}','${w.letter}')">${w.name}</button>`).join('');
-    const workout=set.workouts.find(w=>w.letter===selLetter);
-    const exes=workout?.exercises||[];
-    const exlist=exes.length
-      ?exes.map(we=>{const ex=getEx(we.exId);return`<div class="exrow"><b>${ex?ex.name:'?'}</b> <span class="exrow-scheme">(${we.scheme})</span></div>`;}).join('')
-      :`<div class="exrow exrow-empty">Nenhum exercício ainda</div>`;
-    const delBtn=db.workoutSets.length>1?`<div class="setacts"><button class="sbtn del" onclick="delSet('${set.id}')">🗑 Remover conjunto</button></div>`:'';
-    return`<div class="card setcard"><div class="seth"><div class="setnwrap">${isAct?'<span class="setbadge act">✓ Ativo</span>':''}<div class="setn"${!isAct?` onclick="activateSet('${set.id}')" style="cursor:pointer"`:''}>${set.name}</div></div><button class="hbtn" onclick="openDetail('${set.id}')">✏️ Editar</button></div><div class="setletters">${chips}</div><div class="setexlist">${exlist}</div>${delBtn}</div>`;
-  }).join('');
+  const active=db.workoutSets.find(s=>s.id===db.activeSetId);
+  const old=db.workoutSets.filter(s=>s.id!==db.activeSetId).reverse();
+  let html='';
+  if(active)html+=`<h2 class="setsec">Ativo</h2>${renderSetCard(active)}`;
+  if(old.length)html+=`<h2 class="setsec">Antigos</h2>${old.map(renderSetCard).join('')}`;
+  c.innerHTML=html;
 }
 
 function activateSet(id){
   db.activeSetId=id;const s=db.workoutSets.find(x=>x.id===id);
   if(s)db.nextLetter=s.workouts[0]?.letter||'A';
   save();renderSets();toast(`${s?.name||'Conjunto'} ativado`);
-}
-
-function delSet(id){
-  if(!confirm('Remover este conjunto de treinos?'))return;
-  db.workoutSets=db.workoutSets.filter(s=>s.id!==id);
-  save();renderSets();toast('Conjunto removido','var(--red)');
 }
 
 let _newCnt=3;
@@ -1442,6 +1903,8 @@ function openDetail(setId){
   document.getElementById('ov-name').value=_editSetCopy.name;
   document.getElementById('ov-active').checked=(db.activeSetId===setId);
   renderLtabs();renderDetailExes();showOverlay('ov-detail');
+  document.getElementById('ov-empty').style.display='none';
+  document.getElementById('ov-detail-body').style.display='flex';
 }
 
 function tryCloseDetail(){
@@ -1449,7 +1912,9 @@ function tryCloseDetail(){
 }
 
 function closeDetail(){
-  hideOverlay('ov-detail');_editSetCopy=null;_dirty=false;renderSets();
+  hideOverlay('ov-detail');_editSetCopy=null;_dirty=false;_dSetId=null;renderSets();
+  document.getElementById('ov-empty').style.display='';
+  document.getElementById('ov-detail-body').style.display='none';
 }
 
 function discardDetail(){hideDlg('d-unsaved');closeDetail();}
@@ -1466,7 +1931,8 @@ function saveDetail(){
   }
   const idx=db.workoutSets.findIndex(s=>s.id===_dSetId);
   if(idx>=0)db.workoutSets[idx]=_editSetCopy;
-  save();_dirty=false;toast('Programa salvo!');closeDetail();
+  save();_dirty=false;toast('Programa salvo!');
+  if(isDesktop()){const id=_dSetId;renderSets();openDetail(id);}else{closeDetail();}
 }
 
 /* ═══════════════════════════════════════
@@ -1507,6 +1973,8 @@ function openHistEdit(id){
   document.getElementById('he-date').value=toDateInputVal(_editHist.iniciado_em);
   document.getElementById('he-cal').value=_editHist.calories||'';
   renderHeMood();renderHeExlist();showOverlay('ov-histedit');
+  document.getElementById('ov-histedit-empty').style.display='none';
+  document.getElementById('ov-histedit-body').style.display='flex';
 }
 
 function renderHeMood(){
@@ -1536,7 +2004,11 @@ function renderHeExlist(){
 function heSetWeight(i,v){_editHist.exercises[i].weight=Math.max(0,parseInt(v)||0);}
 function heSetDone(i,checked){_editHist.exercises[i].skipped=!checked;}
 
-function closeHistEdit(){hideOverlay('ov-histedit');_editHist=null;}
+function closeHistEdit(){
+  hideOverlay('ov-histedit');_editHist=null;
+  document.getElementById('ov-histedit-empty').style.display='';
+  document.getElementById('ov-histedit-body').style.display='none';
+}
 
 function saveHistEdit(){
   const dateVal=document.getElementById('he-date').value;
@@ -1551,7 +2023,8 @@ function saveHistEdit(){
   h.calories=parseInt(document.getElementById('he-cal').value)||0;
   h.mood=_heMood;
   h.exercises=_editHist.exercises.map(e=>({exId:e.exId,scheme:e.scheme,weight:e.weight,skipped:!!e.skipped}));
-  save();closeHistEdit();renderHistList();toast('Histórico atualizado!');
+  save();toast('Histórico atualizado!');
+  if(isDesktop()){const id=h.id;renderHistList();openHistEdit(id);}else{closeHistEdit();renderHistList();}
 }
 
 function renderLtabs(){
