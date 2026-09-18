@@ -29,6 +29,9 @@ Tudo é salvo no **localStorage do navegador** — não tem servidor nem banco d
 
 Cada versão publicada fica marcada com uma tag no repositório — dá pra voltar a qualquer uma delas (`git checkout v1.0.0`, por exemplo) se algo quebrar.
 
+- **v1.4.0 — 2026-09-17**
+  - Corrige tela de editar registro do Histórico, que quebrava (campos e lista de exercícios apareciam lado a lado em vez de empilhados).
+  - Nas telas de editar treino e editar histórico, o scroll agora é único: data, calorias, humor e a lista de exercícios rolam juntos, em vez de só a lista rolar separada.
 - **v1.3.0 — 2026-09-17**
   - Puxar a tela pra baixo no topo de qualquer aba recarrega o app na hora (pull-to-refresh), como um aplicativo nativo.
   - Gavetas com campo de texto (ex: novo registro de peso) agora se ajustam pra ficar sempre visíveis acima do teclado, mesmo em telas menores.

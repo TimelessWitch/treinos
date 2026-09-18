@@ -347,7 +347,7 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 /* Workout letter detail overlay */
 .ovh{padding:52px 20px 0;flex-shrink:0;}
 .ovempty{display:flex;align-items:center;justify-content:center;flex:1;}
-#ov-detail-body{display:none;flex-direction:column;flex:1;min-height:0;}
+#ov-detail-body,#ov-histedit-body{display:none;flex-direction:column;flex:1;min-height:0;}
 .ovscroll{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .ovback{display:flex;align-items:center;gap:10px;margin-bottom:16px;cursor:pointer;}
 .ovback-btn{width:36px;height:36px;border-radius:999px;border:1px solid var(--bdr);background:var(--s1);
@@ -711,30 +711,30 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
       <div class="empty"><div class="empty-ico">📋</div><div class="empty-ttl">Selecione um treino para editar</div></div>
     </div>
     <div id="ov-detail-body" style="display:none">
-      <div class="ovh">
-        <div class="ovback" onclick="tryCloseDetail()">
-          <button class="ovback-btn">‹</button>
-          <span style="font-size:13px;color:var(--txt2)">Treinos</span>
-        </div>
-        <div class="flbl" style="margin-top:6px">Nome do programa</div>
-        <input class="tinput" id="ov-name" placeholder="Nome do programa" style="margin-bottom:14px" oninput="markDirty()">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-          <div>
-            <div style="font-size:14px;font-weight:700">Programa ativo</div>
-            <div style="font-size:12px;color:var(--txt2);margin-top:2px">Usar como treino atual</div>
-          </div>
-          <label class="sw"><input type="checkbox" id="ov-active" onchange="markDirty()"><span class="sw-track"></span></label>
-        </div>
-        <div class="distbar" id="ov-distbar"></div>
-        <div class="distleg" id="ov-distleg"></div>
-        <div class="distwarn" id="ov-distwarn">⚠️ Distribuição muscular desbalanceada — sem exercícios para um grupo importante.</div>
-      </div>
-      <div class="ltabs" id="ov-ltabs" style="margin-top:16px"></div>
-      <div style="padding:2px 20px 8px;display:flex;align-items:center;justify-content:space-between">
-        <div style="font-size:12px;color:var(--txt2)" id="ov-wsub">0 exercícios</div>
-        <button class="btn-icon" onclick="openAddExModal()" title="Adicionar exercício">＋</button>
-      </div>
       <div class="ovscroll">
+        <div class="ovh">
+          <div class="ovback" onclick="tryCloseDetail()">
+            <button class="ovback-btn">‹</button>
+            <span style="font-size:13px;color:var(--txt2)">Treinos</span>
+          </div>
+          <div class="flbl" style="margin-top:6px">Nome do programa</div>
+          <input class="tinput" id="ov-name" placeholder="Nome do programa" style="margin-bottom:14px" oninput="markDirty()">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <div>
+              <div style="font-size:14px;font-weight:700">Programa ativo</div>
+              <div style="font-size:12px;color:var(--txt2);margin-top:2px">Usar como treino atual</div>
+            </div>
+            <label class="sw"><input type="checkbox" id="ov-active" onchange="markDirty()"><span class="sw-track"></span></label>
+          </div>
+          <div class="distbar" id="ov-distbar"></div>
+          <div class="distleg" id="ov-distleg"></div>
+          <div class="distwarn" id="ov-distwarn">⚠️ Distribuição muscular desbalanceada — sem exercícios para um grupo importante.</div>
+        </div>
+        <div class="ltabs" id="ov-ltabs" style="margin-top:16px"></div>
+        <div style="padding:2px 20px 8px;display:flex;align-items:center;justify-content:space-between">
+          <div style="font-size:12px;color:var(--txt2)" id="ov-wsub">0 exercícios</div>
+          <button class="btn-icon" onclick="openAddExModal()" title="Adicionar exercício">＋</button>
+        </div>
         <div class="card" style="margin:0 20px 12px;overflow:hidden" id="ov-exlist"></div>
       </div>
       <div style="padding:12px 20px calc(12px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;flex-shrink:0;border-top:1px solid var(--bdr)">
@@ -768,23 +768,23 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
       <div class="empty"><div class="empty-ico">🕒</div><div class="empty-ttl">Selecione um registro para editar</div></div>
     </div>
     <div id="ov-histedit-body" style="display:none">
-      <div class="ovh">
-        <div class="ovback" onclick="closeHistEdit()">
-          <button class="ovback-btn">‹</button>
-          <span style="font-size:13px;color:var(--txt2)">Histórico</span>
-        </div>
-        <div class="flbl" style="margin-top:6px">Data</div>
-        <input class="tinput" type="date" id="he-date" style="margin-bottom:14px">
-        <div class="flbl">Calorias <span class="otag">(opcional)</span></div>
-        <div class="calwrap">
-          <input type="number" class="calinput" id="he-cal" placeholder="0" inputmode="numeric" min="0" max="9999">
-          <span class="calsfx">kcal</span>
-        </div>
-        <div class="flbl">Humor sobre o treino</div>
-        <div class="moodrow" id="he-moodrow"></div>
-      </div>
-      <div style="padding:2px 20px 8px;font-size:12px;color:var(--txt2)" id="he-sub">0 exercícios</div>
       <div class="ovscroll">
+        <div class="ovh">
+          <div class="ovback" onclick="closeHistEdit()">
+            <button class="ovback-btn">‹</button>
+            <span style="font-size:13px;color:var(--txt2)">Histórico</span>
+          </div>
+          <div class="flbl" style="margin-top:6px">Data</div>
+          <input class="tinput" type="date" id="he-date" style="margin-bottom:14px">
+          <div class="flbl">Calorias <span class="otag">(opcional)</span></div>
+          <div class="calwrap">
+            <input type="number" class="calinput" id="he-cal" placeholder="0" inputmode="numeric" min="0" max="9999">
+            <span class="calsfx">kcal</span>
+          </div>
+          <div class="flbl">Humor sobre o treino</div>
+          <div class="moodrow" id="he-moodrow"></div>
+        </div>
+        <div style="padding:2px 20px 8px;font-size:12px;color:var(--txt2)" id="he-sub">0 exercícios</div>
         <div class="card" style="margin:0 20px 12px;overflow:hidden" id="he-exlist"></div>
       </div>
       <div style="padding:12px 20px calc(12px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;flex-shrink:0;border-top:1px solid var(--bdr)">
