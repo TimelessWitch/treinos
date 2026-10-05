@@ -818,6 +818,10 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
         <label style="font-size:11px;color:var(--txt2);display:block;margin-bottom:4px">Músculo (kg)</label>
         <input class="tinput" type="number" id="target-muscle" inputmode="decimal" placeholder="—" oninput="saveTarget('targetMuscle',this.value)">
       </div>
+      <div style="flex:1">
+        <label style="font-size:11px;color:var(--txt2);display:block;margin-bottom:4px">Treinos/semana</label>
+        <input class="tinput" type="number" id="target-weekly" inputmode="numeric" min="1" max="7" placeholder="—" oninput="saveTarget('targetWeekly',this.value)">
+      </div>
     </div>
   </div>
 
@@ -1395,22 +1399,45 @@ function renderHome(){
 function renderStats(){
   const now=new Date();
   const mn=db.history.filter(h=>{const d=new Date(h.iniciado_em);return d.getFullYear()===now.getFullYear()&&d.getMonth()===now.getMonth();});
+  const prevMonth=new Date(now.getFullYear(),now.getMonth()-1,1);
+  const mnPrev=db.history.filter(h=>{const d=new Date(h.iniciado_em);return d.getFullYear()===prevMonth.getFullYear()&&d.getMonth()===prevMonth.getMonth();});
+  const mnDelta=mn.length-mnPrev.length;
+  const mnDeltaHtml=mnPrev.length?`<div class="evo-delta ${mnDelta>0?'up':mnDelta<0?'down':'flat'}" style="font-size:11px">${mnDelta===0?'= mesmo que mês passado':`${mnDelta>0?'▲ +':'▼ '}${mnDelta} vs mês passado`}</div>`:'';
   const yr=db.history.filter(h=>new Date(h.iniciado_em).getFullYear()===now.getFullYear());
   const aw=getActiveWorkout();
   const cnt=aw?db.history.filter(h=>h.setId===db.activeSetId&&h.letter===aw.letter).length:0;
-  let streak=0;
-  const sorted=[...db.history].sort((a,b)=>b.iniciado_em-a.iniciado_em);
-  let chk=new Date();chk.setHours(0,0,0,0);
-  for(const h of sorted){
-    const d=new Date(h.iniciado_em);d.setHours(0,0,0,0);
-    if(d.getTime()===chk.getTime()||d.getTime()===chk.getTime()-864e5){streak++;chk=new Date(d);chk.setDate(d.getDate()-1);}
-    else if(d.getTime()<chk.getTime()-864e5)break;
+  const goal=db.profile.targetWeekly||0;
+  let streak=0,streakLabel='';
+  if(goal>0){
+    // semana = seg–dom; conta semanas consecutivas (para trás) com >= goal treinos
+    function weekStart(ts){const d=new Date(ts);const day=d.getDay()||7;d.setHours(0,0,0,0);d.setDate(d.getDate()-(day-1));return d.getTime();}
+    const byWeek={};
+    db.history.forEach(h=>{const k=weekStart(h.iniciado_em);byWeek[k]=(byWeek[k]||0)+1;});
+    const thisWeek=weekStart(Date.now());
+    const wk=7*864e5;
+    // semana atual: conta se já bateu a meta, senão ignora (está em andamento)
+    if((byWeek[thisWeek]||0)>=goal)streak++;
+    for(let w=thisWeek-wk;;w-=wk){
+      if((byWeek[w]||0)>=goal)streak++;
+      else break;
+      if(!Object.keys(byWeek).some(k=>+k<w))break;
+    }
+    streakLabel=`Semanas com ${goal}x+`;
+  }else{
+    const sorted=[...db.history].sort((a,b)=>b.iniciado_em-a.iniciado_em);
+    let chk=new Date();chk.setHours(0,0,0,0);
+    for(const h of sorted){
+      const d=new Date(h.iniciado_em);d.setHours(0,0,0,0);
+      if(d.getTime()===chk.getTime()||d.getTime()===chk.getTime()-864e5){streak++;chk=new Date(d);chk.setDate(d.getDate()-1);}
+      else if(d.getTime()<chk.getTime()-864e5)break;
+    }
+    streakLabel='Sequência (dias)';
   }
   document.getElementById('stats-grid').innerHTML=`
-    <div class="scard"><div class="sval">${mn.length}</div><div class="slbl2">Dias ativos no mês</div></div>
+    <div class="scard"><div class="sval">${mn.length}</div><div class="slbl2">Dias ativos no mês</div>${mnDeltaHtml}</div>
     <div class="scard"><div class="sval">${yr.length}</div><div class="slbl2">Dias ativos no ano</div></div>
     <div class="scard"><div class="sval">${cnt}</div><div class="slbl2">Vezes ${aw?aw.name:'treino'} feito</div></div>
-    <div class="scard"><div class="sval">${streak} dias</div><div class="slbl2">Sequência atual</div></div>`;
+    <div class="scard"><div class="sval">${streak} sem</div><div class="slbl2">${streakLabel}</div></div>`;
 }
 
 function renderMoodTrend(){
@@ -1492,12 +1519,12 @@ function sparkline(values){
 
 function renderEvo(){
   const el=document.getElementById('evo-grid');
-  const workout=getActiveWorkout();
-  const weighted=(workout?.exercises||[]).filter(we=>we.increment>0);
-  if(!weighted.length){el.innerHTML=`<div style="padding:4px 0;font-size:12px;color:var(--txt2)">Nenhum exercício com carga nesse treino</div>`;return;}
-  el.innerHTML=weighted.map(we=>{
+  const set=getActiveSet();
+  const allWorkouts=set?.workouts||[];
+  const sortedHistory=db.history.slice().sort((a,b)=>a.iniciado_em-b.iniciado_em);
+  function evoCard(we){
     const ex=getEx(we.exId);
-    const series=db.history.slice().sort((a,b)=>a.iniciado_em-b.iniciado_em)
+    const series=sortedHistory
       .map(h=>h.exercises.find(e=>e.exId===we.exId&&!e.skipped))
       .filter(Boolean).map(e=>e.weight).slice(-12);
     const current=series.length?series[series.length-1]:we.weight;
@@ -1516,7 +1543,14 @@ function renderEvo(){
       <div class="evo-valrow"><span class="evo-val">${current}<span class="evo-unit">kg</span></span>${deltaHtml}</div>
       ${bottomHtml}
     </div>`;
+  }
+  const sections=allWorkouts.map(w=>{
+    const weighted=w.exercises.filter(we=>we.increment>0);
+    if(!weighted.length)return'';
+    return`<div style="grid-column:1/-1;font-size:11px;font-weight:700;color:var(--txt2);margin-top:8px;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em">Treino ${w.letter} — ${w.name}</div>`
+      +weighted.map(evoCard).join('');
   }).join('');
+  el.innerHTML=sections||`<div style="padding:4px 0;font-size:12px;color:var(--txt2)">Nenhum exercício com carga cadastrado</div>`;
 }
 
 /* ═══════════════════════════════════════
@@ -1529,6 +1563,7 @@ function renderProfile(){
   document.getElementById('target-weight').value=db.profile.targetWeight??'';
   document.getElementById('target-bodyfat').value=db.profile.targetBodyfat??'';
   document.getElementById('target-muscle').value=db.profile.targetMuscle??'';
+  document.getElementById('target-weekly').value=db.profile.targetWeekly??'';
   renderProfileCards();
 }
 
