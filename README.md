@@ -7,11 +7,12 @@ App de treino pessoal — acompanhamento de treinos, exercícios e histórico, d
 ## O que faz
 
 - Organiza treinos em programas (ex: Treino A, B, C…) com séries, repetições e observações por exercício, navegáveis por abas dentro da própria lista de Treinos.
-- Execução guiada do treino, com ajuste de carga e botão de pular exercício (marcar como não feito).
+- Execução guiada do treino, com ajuste de carga, checkbox de pular exercício e estimativa de 1RM.
 - Histórico editável: data, calorias, humor e o que foi feito ou não em cada sessão.
 - Catálogo de exercícios com distribuição por grupo muscular.
-- Home com visão geral: próximo treino, estatísticas, evolução de carga por exercício, humor ao longo das sessões e mapa de atividade.
-- Tema claro e escuro (alternável em Configurações), backup exportar/importar.
+- Home com visão geral: próximo treino (com o foco muscular do dia), estatísticas da meta semanal, humor ao longo das sessões e gráfico de dias treinados por mês.
+- Aba Progresso com evolução do corpo, das cargas por exercício e o histórico de treinos.
+- Tema claro e escuro e backup exportar/importar, dentro da aba Perfil (seção Configurações).
 
 ## Onde ficam os dados
 
@@ -19,7 +20,7 @@ Tudo é salvo no **localStorage do navegador** — não tem servidor nem banco d
 
 - Os dados ficam só nesse navegador/aparelho; não sincronizam entre dispositivos.
 - Limpar os dados do navegador apaga o progresso.
-- Use os botões **Exportar/Importar** (em Configurações, ícone de engrenagem na Home) pra fazer backup em arquivo `.json` sempre que quiser.
+- Use os botões **Exportar/Importar** (aba Perfil > Configurações) pra fazer backup em arquivo `.json` sempre que quiser.
 
 ## Rodando localmente
 
@@ -29,6 +30,28 @@ Tudo é salvo no **localStorage do navegador** — não tem servidor nem banco d
 
 Cada versão publicada fica marcada com uma tag no repositório — dá pra voltar a qualquer uma delas (`git checkout v1.0.0`, por exemplo) se algo quebrar.
 
+- **v2.0.0 — 2026-10-19**
+  - **Navegação:** 5 abas — Home, Treinos, Exercícios, Progresso e Perfil. O Histórico virou uma sub-aba de Progresso e as Configurações (tema, exportar/importar) passaram para uma seção recolhível no fim do Perfil; a engrenagem foi removida.
+  - **Aba Progresso** com abas em formato de pílula:
+    - **Corpo:** gráficos de peso, % de gordura e massa muscular a partir dos check-ins.
+    - **Cargas:** filtro por grupo muscular, cards de cada exercício com histórico em grade de 2 colunas, gráfico de evolução e filtro por esquema de repetições quando há mais de um.
+    - **Histórico:** lista de treinos; tocar em um treino abre a edição.
+  - **Home:**
+    - Evolução de peso removida da Home (agora vive em Progresso).
+    - Visão geral nova: treinos feitos/meta da semana (com confete ao bater a meta), dias treinados no mês com comparação ▲/▼ ao mês anterior no mesmo período, dias treinados no ano, treinos feitos no programa (soma de todas as letras) e semanas treinando (sequência de semanas que bateram a meta).
+    - Atividade agora é um gráfico de barras com dias treinados nos últimos 3 meses mais o atual.
+    - O card do treino de hoje mostra o foco muscular (ex.: "Inferior frontal e core") e conta só exercícios ativos.
+    - Corrigido erro que impedia os cards de humor e atividade de aparecer quando havia meta semanal definida.
+  - **Editar treino:**
+    - Exercícios podem ser **inativados** com um switch: ficam apagados, não aparecem nem são cobrados na execução, mas o histórico é preservado. A lixeira remove o exercício com confirmação.
+    - Cada exercício mostra série, aumento e peso inicial (ex.: "3×15 • aumento 5kg • inicial 20kg").
+    - Botão **+ Adicionar** dentro do cartão da lista; o campo de nome fica com o switch de treino ativo ao lado.
+    - Dois gráficos de distribuição muscular: do treino inteiro e do dia selecionado (ignoram exercícios inativos).
+  - **Execução do treino:**
+    - O botão de pular saiu da barra inferior e virou um checkbox no card do exercício, que pode ser desmarcado depois.
+    - A barra de progresso agora chega a 100% no último exercício.
+    - No modal de concluir: botão Concluir sempre verde, embaixo; Voltar em cima, e fechar tocando fora.
+  - **Visual:** botões Editar, "+" e Voltar com fundo e texto na cor do tema; ícones Material Symbols (lixeira, setas de ordenar, voltar); chips de letra do treino em formato de pílula; acordeão de Configurações unido ao conteúdo; filtros de grupo muscular preenchem a linha toda; bolinha dos gráficos de linha sempre redonda.
 - **v1.5.0 — 2026-10-05**
   - Evolução de peso na Home agora mostra todos os treinos do programa (A, B, C…), agrupados por letra, em vez de só o treino ativo.
   - Card "Dias ativos no mês" exibe comparação com o mês anterior (▲/▼).

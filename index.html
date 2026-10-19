@@ -140,8 +140,8 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
   box-shadow:0 4px 16px rgba(23,21,30,.06);}
 .btn-glass:active{background:var(--glass-white-bg-active);}
 .btn-ghost:active{background:var(--s2);}
-.btn-icon{width:44px;height:44px;border-radius:999px;border:1px solid var(--bdr);
-  background:var(--s2);color:var(--txt2);font-size:18px;cursor:pointer;
+.btn-icon{width:44px;height:44px;border-radius:999px;border:none;
+  background:var(--acc-tint);color:var(--accl);font-size:18px;cursor:pointer;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent;}
 
 .flbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2);margin-bottom:8px;}
@@ -196,7 +196,7 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 20px;margin-bottom:20px;}
 .scard{background:var(--s1);border-radius:var(--rl);box-shadow:0 8px 24px rgba(23,21,30,.06);padding:14px;}
 .sval{font-size:22px;font-weight:700;}
-.slbl2{font-size:11px;color:var(--txt2);margin-top:2px;}
+.slbl2{font-size:12px;font-weight:600;color:var(--txt);margin-top:2px;}
 
 /* Heatmap */
 .mood-wrap{padding:0 20px;margin-bottom:20px;}
@@ -204,17 +204,53 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 .mood-emojis{display:flex;flex-direction:column;justify-content:space-between;padding:10px 0;font-size:18px;line-height:1;flex-shrink:0;}
 .mood-svg{flex:1;display:block;min-width:0;}
 .hm-wrap{padding:0 20px;margin-bottom:20px;}
-.hm-months{display:grid;grid-template-columns:repeat(16,1fr);gap:3px;margin-top:10px;}
-.hm-mlbl{font-size:10px;font-weight:600;color:var(--txt2);text-transform:capitalize;white-space:nowrap;}
-.hm-grid{display:grid;grid-template-columns:repeat(16,1fr);gap:3px;margin-top:4px;}
-.hm-col{display:flex;flex-direction:column;gap:3px;}
-.hm-c{aspect-ratio:1;border-radius:3px;background:var(--s2);}
-.hm-c.d1{background:var(--accg);}
-.hm-c.d2{background:var(--acc-tint65);}
-.hm-c.d3{background:var(--acc);}
-.hm-leg{display:flex;align-items:center;gap:8px;margin-top:8px;justify-content:flex-end;
-  font-size:11px;color:var(--txt2);}
-.hm-sq{width:11px;height:11px;border-radius:3px;}
+#settings-details[open]>summary{border-radius:var(--r) var(--r) 0 0 !important;border-bottom-color:transparent !important;}
+#settings-details[open] #settings-chevron{transform:rotate(180deg);}
+.act-card{padding:14px 12px 10px;margin-top:10px;}
+.act-bars{display:flex;align-items:flex-end;gap:10px;height:130px;border-bottom:1px solid var(--bdr);}
+.act-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;}
+.act-n{font-size:12px;font-weight:600;color:var(--txt2);margin-bottom:4px;}
+.act-bar{width:100%;max-width:56px;border-radius:4px 4px 0 0;background:var(--acc);min-height:2px;}
+.act-lbls{display:flex;gap:10px;margin-top:6px;}
+.act-lbl{flex:1;text-align:center;font-size:10px;font-weight:600;color:var(--txt2);text-transform:capitalize;}
+
+/* ── PROGRESSO TAB ── */
+.prog-tabs{display:flex;gap:4px;margin:0 20px 16px;padding:4px;border-radius:999px;background:var(--acc-tint);}
+.prog-tab{flex:1;padding:10px 8px;border-radius:999px;border:none;background:transparent;
+  color:var(--txt2);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;
+  -webkit-tap-highlight-color:transparent;transition:background .15s,color .15s;}
+.prog-tab.on{background:var(--acc);color:#fff;}
+.prog-pane{display:none;flex-direction:column;flex:1;}
+.prog-pane.on{display:flex;}
+
+/* ── Cargas: grupo muscular chips ── */
+.mg-chips{display:flex;gap:6px;padding:0 20px;margin-bottom:14px;flex-wrap:wrap;}
+.mg-chip{flex:1 1 auto;text-align:center;padding:6px 12px;border-radius:100px;border:1.5px solid var(--bdr);background:var(--glass-bg);
+  color:var(--txt2);font-size:12px;font-weight:600;cursor:pointer;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;}
+.mg-chip.on{border-color:var(--accl);background:var(--acc-tint);color:var(--accl);}
+.rep-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.rep-chip{padding:4px 10px;border-radius:100px;border:1px solid var(--bdr);background:var(--s2);
+  color:var(--txt2);font-size:11px;font-weight:600;cursor:pointer;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;}
+.rep-chip.on{border-color:var(--accl);background:var(--acc-tint);color:var(--accl);}
+#pp-cargas-content{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px;align-content:start;}
+#pp-cargas-content .empty{grid-column:1/-1;}
+.carga-card{margin:0;padding:14px;min-width:0;}
+.carga-exname{font-size:14px;font-weight:700;margin-bottom:10px;}
+
+/* ── Exercício inativo no modo edição ── */
+.wexrow.inactive .wexname,.wexrow.inactive .wexmeta,.wexrow.inactive .wexobs{opacity:.38;}
+.wexrow.inactive .order-btn{opacity:.25;}
+
+/* ── Skip checkbox no card de execução ── */
+.skip-check-wrap{display:flex;align-items:center;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid var(--bdr);cursor:pointer;}
+.skip-check-lbl{font-size:13px;font-weight:600;color:var(--txt2);}
+.skip-check-wrap input[type=checkbox]{width:18px;height:18px;accent-color:var(--acc);cursor:pointer;}
+
+/* ── Confetti ── */
+@keyframes confetti-fall{0%{transform:translateY(-10px) rotate(0deg);opacity:1;}100%{transform:translateY(100vh) rotate(720deg);opacity:0;}}
+.confetti-piece{position:fixed;top:0;width:8px;height:8px;border-radius:2px;pointer-events:none;z-index:300;animation:confetti-fall linear forwards;}
 
 /* Weight evolution */
 .evo-wrap{padding:0 20px;margin-bottom:20px;}
@@ -292,12 +328,12 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 .bwico{font-size:36px;}
 .bwtxt{font-size:14px;color:var(--txt2);}
 .exnav{padding:12px 20px 36px;display:flex;gap:12px;}
-.btn-prev{width:52px;height:52px;border-radius:999px;border:1px solid var(--bdr);
-  background:var(--s1);color:var(--txt2);font-size:22px;cursor:pointer;
+.btn-prev{width:52px;height:52px;border-radius:999px;border:none;
+  background:var(--acc-tint);color:var(--accl);font-size:22px;cursor:pointer;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
   transition:all .15s;-webkit-tap-highlight-color:transparent;}
 .btn-prev:disabled{opacity:.25;cursor:not-allowed;}
-.btn-prev:not(:disabled):active{background:var(--s2);}
+.btn-prev:not(:disabled):active{opacity:.7;}
 .btn-nxt{flex:1;height:52px;border-radius:999px;border:none;
   font-size:15px;font-weight:700;cursor:pointer;letter-spacing:.02em;
   transition:all .15s;-webkit-tap-highlight-color:transparent;}
@@ -317,14 +353,15 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 .setn{font-size:16px;font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .setbadge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;white-space:nowrap;flex-shrink:0;}
 .setbadge.act{background:var(--grn-tint);color:var(--grn);}
-.hbtn{flex-shrink:0;padding:7px 14px;border-radius:100px;border:none;background:var(--s2);
-  color:var(--txt);font-size:12px;font-weight:700;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.hbtn{flex-shrink:0;padding:7px 14px;border-radius:100px;border:none;background:var(--acc-tint);
+  color:var(--accl);font-size:12px;font-weight:700;cursor:pointer;-webkit-tap-highlight-color:transparent;}
 .hbtn:active{opacity:.7;}
-.setletters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
-.lchip{padding:5px 11px;border-radius:var(--r);background:var(--s2);font-size:12px;font-weight:700;color:var(--txt2);border:none;cursor:pointer;}
+.setletters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+.lchip{padding:8px 18px;border-radius:100px;border:1.5px solid var(--bdr);background:var(--glass-bg);font-size:13px;font-weight:700;color:var(--txt2);cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:all .15s;}
 .lchip:active{opacity:.7;}
-.lchip.cur{background:var(--acc);color:#fff;}
-.lchip.sel{outline:2px solid var(--accl);outline-offset:-2px;}
+.lchip.sel{border-color:var(--accl);background:var(--acc-tint);color:var(--accl);}
+.lchip.cur{background:var(--acc);border-color:var(--acc);color:#fff;}
+.lchip.cur.sel{border-color:var(--accl);}
 .setexlist{margin-bottom:12px;}
 .exrow{padding:8px 0;font-size:14px;line-height:1.4;border-bottom:1px solid var(--bdr);}
 .exrow:last-child{border-bottom:none;}
@@ -351,8 +388,8 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 #ov-detail-body,#ov-histedit-body{display:none;flex-direction:column;flex:1;min-height:0;}
 .ovscroll{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .ovback{display:flex;align-items:center;gap:10px;margin-bottom:16px;cursor:pointer;}
-.ovback-btn{width:36px;height:36px;border-radius:999px;border:1px solid var(--bdr);background:var(--s1);
-  color:var(--txt);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+.ovback-btn{width:36px;height:36px;border-radius:999px;border:none;background:var(--acc-tint);
+  color:var(--accl);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;
   -webkit-tap-highlight-color:transparent;}
 .ovttl{font-size:22px;font-weight:700;margin-bottom:4px;}
 .ovsub{font-size:13px;color:var(--txt2);margin-bottom:14px;}
@@ -377,7 +414,8 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 .sw input:checked+.sw-track::before{transform:translateX(20px);}
 
 /* Order buttons */
-.order-btn{width:26px;height:20px;border-radius:8px;border:1px solid var(--bdr);background:var(--s2);color:var(--txt2);font-size:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;line-height:1;}
+.order-btn .material-symbols-rounded{font-size:24px;}
+.order-btn{width:26px;height:22px;border-radius:8px;border:1px solid var(--bdr);background:var(--s2);color:var(--txt2);font-size:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;line-height:1;}
 .order-btn:not(:disabled):active{background:var(--acc-tint);color:var(--accl);}
 .order-btn:disabled{opacity:.2;cursor:not-allowed;}
 
@@ -397,6 +435,7 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 .wexobs{font-size:11px;color:var(--txt2);margin-top:3px;}
 .wexobs.warn{color:var(--ylw);}
 .wexw{font-size:13px;font-weight:700;color:var(--accl);white-space:nowrap;cursor:pointer;}
+.material-symbols-rounded{font-family:'Material Symbols Rounded';font-weight:normal;font-style:normal;line-height:1;display:inline-block;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
 .btnrem{width:30px;height:30px;border-radius:999px;border:none;
   background:var(--red-tint);color:var(--red);font-size:18px;cursor:pointer;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
@@ -548,7 +587,6 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
   .nav-icon{font-size:17px;}
   .nav-lbl{font-size:13px;letter-spacing:0;}
   .btn-icon.settings-btn{display:none;}
-  .nav-btn.settings-nav-btn{display:flex;}
   /* gavetas viram diálogo centralizado */
   .mbd{align-items:center;padding:24px;}
   .mhandle{display:none;}
@@ -608,12 +646,6 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
   #tab-historico .ph{grid-column:1/-1;padding-left:0;padding-right:0;}
   #tab-historico #hist-list{grid-column:1;grid-row:2;overflow-y:auto;min-height:0;padding-bottom:24px;}
   #tab-historico #hist-list .histcard{margin:0 0 10px;}
-  #tab-historico #ov-histedit{
-    display:flex !important;flex-direction:column;
-    position:static;grid-column:2;grid-row:2;inset:auto;
-    background:var(--s1-solid);border:1px solid var(--bdr);border-radius:var(--rl);
-    min-height:0;overflow:hidden;margin-bottom:24px;
-  }
 
   /* Perfil: master-detail */
   #tab-perfil.on{display:grid;grid-template-columns:1fr 380px;grid-template-rows:auto 1fr;
@@ -645,7 +677,6 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 <!-- ══════════════ HOME ══════════════ -->
 <div class="tab on" id="tab-home">
   <div class="hero">
-    <button class="btn-icon settings-btn" onclick="openSettings()" title="Configurações">⚙️</button>
     <h1 class="greeting" id="greeting">Bom dia!</h1>
     <p class="hero-sub">Pronto para treinar?</p>
   </div>
@@ -656,6 +687,7 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
         <div class="nwcard-top">
           <div class="cbadge"><span class="cdot"></span>PROGRAMADO PARA HOJE</div>
           <div class="cwname" id="cwname">Treino B</div>
+          <div class="cwmeta" id="cwfocus" style="margin-bottom:4px;font-weight:600;color:#fff"></div>
           <div class="cwmeta" id="cwmeta">6 exercícios</div>
         </div>
         <div class="nwcard-cta">
@@ -677,24 +709,7 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
     <div class="hg-activity">
       <div class="hm-wrap">
         <div class="slbl" style="padding:0">Atividade</div>
-        <div class="hm-months" id="hm-months"></div>
-        <div class="hm-grid" id="heatmap"></div>
-        <div class="hm-leg">
-          <span>Menos</span>
-          <div class="hm-sq" style="background:var(--s2)"></div>
-          <div class="hm-sq" style="background:var(--accg)"></div>
-          <div class="hm-sq" style="background:var(--acc)"></div>
-          <span>Mais</span>
-        </div>
-      </div>
-    </div>
-    <div class="hg-evo">
-      <div class="evo-wrap">
-        <div class="slbl" style="padding:0">Evolução de peso</div>
-        <div class="evo-grid" id="evo-grid"></div>
-      </div>
-      <div style="padding:0 20px 4px">
-        <button class="btn btn-glass" onclick="switchTab('historico')">Ver histórico completo</button>
+        <div class="card act-card" id="heatmap"></div>
       </div>
     </div>
   </div>
@@ -715,26 +730,23 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
       <div class="ovscroll">
         <div class="ovh">
           <div class="ovback" onclick="tryCloseDetail()">
-            <button class="ovback-btn">‹</button>
+            <button class="ovback-btn"><span class="material-symbols-rounded" style="font-size:14px;position:relative;left:.08em">arrow_back_ios</span></button>
             <span style="font-size:13px;color:var(--txt2)">Treinos</span>
           </div>
-          <div class="flbl" style="margin-top:6px">Nome do programa</div>
-          <input class="tinput" id="ov-name" placeholder="Nome do programa" style="margin-bottom:14px" oninput="markDirty()">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-            <div>
-              <div style="font-size:14px;font-weight:700">Programa ativo</div>
-              <div style="font-size:12px;color:var(--txt2);margin-top:2px">Usar como treino atual</div>
-            </div>
-            <label class="sw"><input type="checkbox" id="ov-active" onchange="markDirty()"><span class="sw-track"></span></label>
+          <div class="flbl" style="margin-top:6px">Nome do treino</div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+            <input class="tinput" id="ov-name" placeholder="Nome do treino" style="flex:1;min-width:0" oninput="markDirty()">
+            <label class="sw" title="Treino ativo"><input type="checkbox" id="ov-active" onchange="markDirty()"><span class="sw-track"></span></label>
           </div>
+          <div class="flbl">Distribuição do treino</div>
           <div class="distbar" id="ov-distbar"></div>
           <div class="distleg" id="ov-distleg"></div>
           <div class="distwarn" id="ov-distwarn">⚠️ Distribuição muscular desbalanceada — sem exercícios para um grupo importante.</div>
         </div>
         <div class="ltabs" id="ov-ltabs" style="margin-top:16px"></div>
+        <div style="padding:14px 20px 0"><div class="flbl">Distribuição do dia</div><div class="distbar" id="ov-wdistbar"></div><div class="distleg" id="ov-wdistleg"></div></div>
         <div style="padding:2px 20px 8px;display:flex;align-items:center;justify-content:space-between">
           <div style="font-size:12px;color:var(--txt2)" id="ov-wsub">0 exercícios</div>
-          <button class="btn-icon" onclick="openAddExModal()" title="Adicionar exercício">＋</button>
         </div>
         <div class="card" style="margin:0 20px 12px;overflow:hidden" id="ov-exlist"></div>
       </div>
@@ -760,37 +772,61 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
   </div>
 </div>
 
+<!-- ══════════════ PROGRESSO ══════════════ -->
+<div class="tab" id="tab-progresso">
+  <div class="ph"><div class="ptitle">Progresso</div></div>
+  <div class="prog-tabs">
+    <button class="prog-tab on" id="ptab-corpo"    onclick="switchProgTab('corpo')">Corpo</button>
+    <button class="prog-tab"    id="ptab-cargas"   onclick="switchProgTab('cargas')">Cargas</button>
+    <button class="prog-tab"    id="ptab-historico" onclick="switchProgTab('historico')">Histórico</button>
+  </div>
+  <!-- Corpo -->
+  <div class="prog-pane on" id="pp-corpo">
+    <div id="pp-corpo-content" style="padding:0 20px;display:flex;flex-direction:column;gap:10px"></div>
+  </div>
+  <!-- Cargas -->
+  <div class="prog-pane" id="pp-cargas">
+    <div class="mg-chips" id="mg-chips"></div>
+    <div id="pp-cargas-content" style="flex:1;overflow-y:auto"></div>
+  </div>
+  <!-- Histórico -->
+  <div class="prog-pane" id="pp-historico">
+    <div id="pp-hist-list" style="flex:1"></div>
+  </div>
+</div>
+
 <!-- ══════════════ HISTÓRICO ══════════════ -->
 <div class="tab" id="tab-historico">
   <div class="ph"><div class="ptitle">Histórico</div></div>
   <div id="hist-list"></div>
-  <div class="overlay" id="ov-histedit">
-    <div class="ovempty" id="ov-histedit-empty">
-      <div class="empty"><div class="empty-ico">🕒</div><div class="empty-ttl">Selecione um registro para editar</div></div>
-    </div>
-    <div id="ov-histedit-body" style="display:none">
-      <div class="ovscroll">
-        <div class="ovh">
-          <div class="ovback" onclick="closeHistEdit()">
-            <button class="ovback-btn">‹</button>
-            <span style="font-size:13px;color:var(--txt2)">Histórico</span>
-          </div>
-          <div class="flbl" style="margin-top:6px">Data</div>
-          <input class="tinput" type="date" id="he-date" style="margin-bottom:14px">
-          <div class="flbl">Calorias <span class="otag">(opcional)</span></div>
-          <div class="calwrap">
-            <input type="number" class="calinput" id="he-cal" placeholder="0" inputmode="numeric" min="0" max="9999">
-            <span class="calsfx">kcal</span>
-          </div>
-          <div class="flbl">Humor sobre o treino</div>
-          <div class="moodrow" id="he-moodrow"></div>
+</div>
+
+<div class="overlay" id="ov-histedit">
+  <div class="ovempty" id="ov-histedit-empty">
+    <div class="empty"><div class="empty-ico">🕒</div><div class="empty-ttl">Selecione um registro para editar</div></div>
+  </div>
+  <div id="ov-histedit-body" style="display:none">
+    <div class="ovscroll">
+      <div class="ovh">
+        <div class="ovback" onclick="closeHistEdit()">
+          <button class="ovback-btn"><span class="material-symbols-rounded" style="font-size:14px;position:relative;left:.08em">arrow_back_ios</span></button>
+          <span style="font-size:13px;color:var(--txt2)">Histórico</span>
         </div>
-        <div style="padding:2px 20px 8px;font-size:12px;color:var(--txt2)" id="he-sub">0 exercícios</div>
-        <div class="card" style="margin:0 20px 12px;overflow:hidden" id="he-exlist"></div>
+        <div class="flbl" style="margin-top:6px">Data</div>
+        <input class="tinput" type="date" id="he-date" style="margin-bottom:14px">
+        <div class="flbl">Calorias <span class="otag">(opcional)</span></div>
+        <div class="calwrap">
+          <input type="number" class="calinput" id="he-cal" placeholder="0" inputmode="numeric" min="0" max="9999">
+          <span class="calsfx">kcal</span>
+        </div>
+        <div class="flbl">Humor sobre o treino</div>
+        <div class="moodrow" id="he-moodrow"></div>
       </div>
-      <div style="padding:12px 20px calc(12px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;flex-shrink:0;border-top:1px solid var(--bdr)">
-        <button class="btn btn-acc" onclick="saveHistEdit()">Salvar alterações</button>
-      </div>
+      <div style="padding:2px 20px 8px;font-size:12px;color:var(--txt2)" id="he-sub">0 exercícios</div>
+      <div class="card" style="margin:0 20px 12px;overflow:hidden" id="he-exlist"></div>
+    </div>
+    <div style="padding:12px 20px calc(12px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;flex-shrink:0;border-top:1px solid var(--bdr)">
+      <button class="btn btn-acc" onclick="saveHistEdit()">Salvar alterações</button>
     </div>
   </div>
 </div>
@@ -830,6 +866,27 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
     <div class="flbl" style="margin-bottom:10px">Acompanhamento</div>
     <div class="profile-cards" id="profile-cards"></div>
     <button class="btn btn-acc" style="margin-top:14px" onclick="openCheckinForm(null)">+ Novo registro</button>
+  </div>
+
+  <div style="padding:0 20px;margin-top:28px;margin-bottom:8px">
+    <details id="settings-details">
+      <summary style="font-size:14px;font-weight:700;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--s1);border-radius:var(--r);border:1px solid var(--bdr)">
+        <span>⚙️ Configurações</span><span id="settings-chevron" style="font-size:12px;color:var(--txt2)">▼</span>
+      </summary>
+      <div style="background:var(--s1);border:1px solid var(--bdr);border-top:none;border-radius:0 0 var(--r) var(--r);padding:16px">
+        <div class="flbl">Aparência</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px;margin-bottom:20px">
+          <div style="font-size:14px;font-weight:600">Modo escuro</div>
+          <label class="sw"><input type="checkbox" id="theme-toggle" onchange="setTheme(this.checked?'dark':'light')"><span class="sw-track"></span></label>
+        </div>
+        <div class="flbl">Backup</div>
+        <div style="display:flex;gap:10px;margin-top:10px">
+          <button class="btn btn-ghost" style="flex:1;height:44px" onclick="exportBackup()">⬇️ Exportar</button>
+          <button class="btn btn-ghost" style="flex:1;height:44px" onclick="document.getElementById('import-file').click()">⬆️ Importar</button>
+        </div>
+        <input type="file" id="import-file" accept="application/json,.json" style="display:none" onchange="importBackup(this)">
+      </div>
+    </details>
   </div>
   </div>
 
@@ -877,11 +934,11 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 
 <!-- ══════════════ BOTTOM NAV ══════════════ -->
 <nav class="bottom-nav">
-  <button class="nav-btn on" id="nav-home"      onclick="switchTab('home')"><span class="nav-icon">🏠</span><span class="nav-lbl">Home</span></button>
-  <button class="nav-btn"    id="nav-treinos"   onclick="switchTab('treinos')"><span class="nav-icon">📋</span><span class="nav-lbl">Treinos</span></button>
+  <button class="nav-btn on" id="nav-home"       onclick="switchTab('home')"><span class="nav-icon">🏠</span><span class="nav-lbl">Home</span></button>
+  <button class="nav-btn"    id="nav-treinos"    onclick="switchTab('treinos')"><span class="nav-icon">📋</span><span class="nav-lbl">Treinos</span></button>
   <button class="nav-btn"    id="nav-exercicios" onclick="switchTab('exercicios')"><span class="nav-icon">💪</span><span class="nav-lbl">Exercícios</span></button>
-  <button class="nav-btn"    id="nav-perfil" onclick="switchTab('perfil')"><span class="nav-icon">👤</span><span class="nav-lbl">Perfil</span></button>
-  <button class="nav-btn settings-nav-btn" onclick="openSettings()"><span class="nav-icon">⚙️</span><span class="nav-lbl">Configurações</span></button>
+  <button class="nav-btn"    id="nav-progresso"  onclick="switchTab('progresso')"><span class="nav-icon">📈</span><span class="nav-lbl">Progresso</span></button>
+  <button class="nav-btn"    id="nav-perfil"     onclick="switchTab('perfil')"><span class="nav-icon">👤</span><span class="nav-lbl">Perfil</span></button>
 </nav>
 
 <!-- ══════════════ OVERLAY: EXECUTE ══════════════ -->
@@ -896,9 +953,21 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
   </div>
   <div class="cvp" id="cvp"><div class="ctrack" id="ctrack"></div></div>
   <div class="exnav">
-    <button class="btn-prev" id="btn-prev" onclick="prevEx()" disabled>‹</button>
+    <button class="btn-prev" id="btn-prev" onclick="prevEx()" disabled><span class="material-symbols-rounded" style="font-size:22px;position:relative;left:.14em">arrow_back_ios</span></button>
     <button class="btn-nxt go" id="btn-nxt" onclick="nextEx()">Próximo →</button>
-    <button class="skipbtn" id="skip-btn" onclick="toggleSkip()">⏭</button>
+  </div>
+</div>
+
+<!-- ══════════════ DIALOG: REMOVE EXERCISE FROM WORKOUT ══════════════ -->
+<div class="dbd" id="d-remwex">
+  <div class="dbox">
+    <div style="font-size:40px;margin-bottom:12px">🗑️</div>
+    <div style="font-size:18px;font-weight:700;margin-bottom:8px">Remover exercício?</div>
+    <div style="font-size:14px;color:var(--txt2);line-height:1.55;margin-bottom:24px">Será removido deste treino. O histórico não será apagado.</div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <button class="btn" style="background:var(--red);color:#fff" onclick="confirmRemoveWex()">Remover</button>
+      <button class="btn btn-ghost" onclick="hideDlg('d-remwex')">Cancelar</button>
+    </div>
   </div>
 </div>
 
@@ -915,25 +984,6 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
   </div>
 </div>
 
-<!-- ══════════════ MODAL: SETTINGS ══════════════ -->
-<div class="mbd" id="m-settings">
-  <div class="msheet">
-    <div class="mhandle"></div>
-    <div class="mtitle">Configurações</div>
-    <div class="flbl">Aparência</div>
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px;margin-bottom:20px">
-      <div style="font-size:14px;font-weight:600">Modo escuro</div>
-      <label class="sw"><input type="checkbox" id="theme-toggle" onchange="setTheme(this.checked?'dark':'light')"><span class="sw-track"></span></label>
-    </div>
-    <div class="flbl">Backup</div>
-    <div style="display:flex;gap:10px;margin-top:10px;margin-bottom:16px">
-      <button class="btn btn-ghost" style="flex:1;height:44px" onclick="exportBackup()">⬇️ Exportar</button>
-      <button class="btn btn-ghost" style="flex:1;height:44px" onclick="document.getElementById('import-file').click()">⬆️ Importar</button>
-    </div>
-    <input type="file" id="import-file" accept="application/json,.json" style="display:none" onchange="importBackup(this)">
-    <button class="btn btn-ghost" onclick="hideModal('m-settings')" style="margin-top:8px">Fechar</button>
-  </div>
-</div>
 
 <!-- ══════════════ MODAL: MARCAR TREINO FEITO (desktop) ══════════════ -->
 <div class="mbd" id="m-quicklog">
@@ -956,7 +1006,7 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 </div>
 
 <!-- ══════════════ MODAL: FINISH ══════════════ -->
-<div class="mbd" id="m-finish">
+<div class="mbd" id="m-finish" onclick="if(event.target===this)hideModal('m-finish')">
   <div class="msheet">
     <div class="mhandle"></div>
     <div class="mtitle">🎉 Treino concluído!</div>
@@ -974,7 +1024,8 @@ body{font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
       <button class="moodbtn" data-m="bom"        onclick="pickMood(this)"><span class="moodico">😊</span><span class="moodtxt">Bom</span></button>
       <button class="moodbtn" data-m="muito_bom"  onclick="pickMood(this)"><span class="moodico">🤩</span><span class="moodtxt">Muito<br>bom</span></button>
     </div>
-    <button class="btn btn-grn" onclick="completeWorkout()">Concluir</button>
+    <button class="btn btn-ghost" onclick="hideModal('m-finish')">Voltar</button>
+    <button class="btn btn-grn" onclick="completeWorkout()" style="margin-top:16px">Concluir</button>
   </div>
 </div>
 
@@ -1320,10 +1371,6 @@ function toast(msg,color){
   el.classList.add('on');setTimeout(()=>el.classList.remove('on'),3000);
 }
 
-function openSettings(){
-  document.getElementById('theme-toggle').checked=document.documentElement.dataset.theme==='dark';
-  showModal('m-settings');
-}
 function setTheme(theme){
   document.documentElement.dataset.theme=theme;
   try{localStorage.setItem('fitflow_theme',theme);}catch{}
@@ -1382,6 +1429,7 @@ function switchTab(tab){
   if(tab==='treinos')renderSets();
   if(tab==='exercicios')renderExList('');
   if(tab==='historico')renderHistList();
+  if(tab==='progresso')renderProgresso();
   if(tab==='perfil'){renderProfile();if(isDesktop())openCheckinList();}
 }
 
@@ -1394,53 +1442,78 @@ function renderHome(){
   const set=getActiveSet(),w=getActiveWorkout();
   if(w&&set){
     document.getElementById('cwname').textContent=w.name;
-    document.getElementById('cwmeta').textContent=`${set.name} · ${w.exercises.length} exercício${w.exercises.length!==1?'s':''}`;
+    const act=w.exercises.filter(we=>we.active!==false);
+    document.getElementById('cwmeta').textContent=`${set.name} · ${act.length} exercício${act.length!==1?'s':''}`;
+    const FN={ombros:'Ombros',costas:'Costas',peitotri:'Peito e tríceps',inffront:'Inferior frontal',infpost:'Inferior posterior',outros:'Core'};
+    const dist=calcDist(act);
+    const top=DG.map(g=>g.id).filter(id=>dist[id]>=20).sort((a,b)=>dist[b]-dist[a]);
+    const names=top.map(id=>FN[id]);
+    document.getElementById('cwfocus').textContent=names.length>1?names.slice(0,-1).join(', ')+' e '+names.slice(-1):names[0]||'';
   }
-  renderStats();renderMoodTrend();renderHeatmap();renderEvo();
+  renderStats();renderMoodTrend();renderHeatmap();
 }
+
+function weekStart(ts){const d=new Date(ts);const day=d.getDay()||7;d.setHours(0,0,0,0);d.setDate(d.getDate()-(day-1));return d.getTime();}
 
 function renderStats(){
   const now=new Date();
-  const mn=db.history.filter(h=>{const d=new Date(h.iniciado_em);return d.getFullYear()===now.getFullYear()&&d.getMonth()===now.getMonth();});
+  const todayDay=now.getDate();
+  // Dias ativos no mês atual (dias únicos)
+  const mnDays=new Set(db.history.filter(h=>{const d=new Date(h.iniciado_em);return d.getFullYear()===now.getFullYear()&&d.getMonth()===now.getMonth();}).map(h=>{const d=new Date(h.iniciado_em);return d.getDate();}));
+  // Mesmo período do mês anterior (até o dia de hoje no mês anterior)
   const prevMonth=new Date(now.getFullYear(),now.getMonth()-1,1);
-  const mnPrev=db.history.filter(h=>{const d=new Date(h.iniciado_em);return d.getFullYear()===prevMonth.getFullYear()&&d.getMonth()===prevMonth.getMonth();});
-  const mnDelta=mn.length-mnPrev.length;
-  const mnDeltaHtml=mnPrev.length?`<div class="evo-delta ${mnDelta>0?'up':mnDelta<0?'down':'flat'}" style="font-size:11px">${mnDelta===0?'= mesmo que mês passado':`${mnDelta>0?'▲ +':'▼ '}${mnDelta} vs mês passado`}</div>`:'';
-  const yr=db.history.filter(h=>new Date(h.iniciado_em).getFullYear()===now.getFullYear());
-  const aw=getActiveWorkout();
-  const cnt=aw?db.history.filter(h=>h.setId===db.activeSetId&&h.letter===aw.letter).length:0;
+  const mnPrevDays=new Set(db.history.filter(h=>{const d=new Date(h.iniciado_em);return d.getFullYear()===prevMonth.getFullYear()&&d.getMonth()===prevMonth.getMonth()&&d.getDate()<=todayDay;}).map(h=>{const d=new Date(h.iniciado_em);return d.getDate();}));
+  const mnCount=mnDays.size,mnPrevCount=mnPrevDays.size;
+  const mnDelta=mnCount-mnPrevCount;
+  const mnDeltaHtml=mnPrevCount?`<div class="evo-delta ${mnDelta>0?'up':mnDelta<0?'down':'flat'}">${mnDelta===0?'=':(mnDelta>0?'▲ +':'▼ −')+Math.abs(mnDelta)}</div>`:'';
+  // Dias no ano
+  const yrSet=new Set(db.history.filter(h=>new Date(h.iniciado_em).getFullYear()===now.getFullYear()).map(h=>{const d=new Date(h.iniciado_em);return d.toDateString();}));
+  // Total de sessões do set ativo
+  const cnt=db.history.filter(h=>h.setId===db.activeSetId).length;
+  // Streak de semanas batendo a meta
   const goal=db.profile.targetWeekly||0;
-  let streak=0,streakLabel='';
+  let streak=0,streakLabel='Semanas treinando';
   if(goal>0){
-    // semana = seg–dom; conta semanas consecutivas (para trás) com >= goal treinos
-    function weekStart(ts){const d=new Date(ts);const day=d.getDay()||7;d.setHours(0,0,0,0);d.setDate(d.getDate()-(day-1));return d.getTime();}
     const byWeek={};
-    db.history.forEach(h=>{const k=weekStart(h.iniciado_em);byWeek[k]=(byWeek[k]||0)+1;});
+    db.history.forEach(h=>{
+      // conta apenas dias únicos por semana para o streak
+      const k=weekStart(h.iniciado_em);
+      const dk=new Date(h.iniciado_em).toDateString();
+      if(!byWeek[k])byWeek[k]=new Set();
+      byWeek[k].add(dk);
+    });
     const thisWeek=weekStart(Date.now());
     const wk=7*864e5;
-    // semana atual: conta se já bateu a meta, senão ignora (está em andamento)
-    if((byWeek[thisWeek]||0)>=goal)streak++;
+    if((byWeek[thisWeek]?.size||0)>=goal)streak++;
     for(let w=thisWeek-wk;;w-=wk){
-      if((byWeek[w]||0)>=goal)streak++;
+      if((byWeek[w]?.size||0)>=goal)streak++;
       else break;
       if(!Object.keys(byWeek).some(k=>+k<w))break;
     }
-    streakLabel=`Semanas com ${goal}x+`;
-  }else{
-    const sorted=[...db.history].sort((a,b)=>b.iniciado_em-a.iniciado_em);
-    let chk=new Date();chk.setHours(0,0,0,0);
-    for(const h of sorted){
-      const d=new Date(h.iniciado_em);d.setHours(0,0,0,0);
-      if(d.getTime()===chk.getTime()||d.getTime()===chk.getTime()-864e5){streak++;chk=new Date(d);chk.setDate(d.getDate()-1);}
-      else if(d.getTime()<chk.getTime()-864e5)break;
-    }
-    streakLabel='Sequência (dias)';
   }
+  // Meta semanal desta semana
+  const goal2=db.profile.targetWeekly||0;
+  let weekCard='',justHit=false;
+  if(goal2>0){
+    const thisWeekStart=weekStart(Date.now());
+    const thisWeekDays=new Set(db.history.filter(h=>weekStart(h.iniciado_em)===thisWeekStart).map(h=>new Date(h.iniciado_em).toDateString()));
+    const done2=thisWeekDays.size;
+    const remaining=Math.max(0,goal2-done2);
+    justHit=done2>=goal2;
+    if(justHit){
+      weekCard=`<div class="scard" style="grid-column:span 2;background:linear-gradient(135deg,var(--acc),var(--acc2));border:none" id="goal-card"><div class="sval" style="color:#fff">🎉 Meta batida!</div><div class="slbl2" style="color:rgba(255,255,255,.8)">${done2} de ${goal2} treinos esta semana</div></div>`;
+    }else{
+      weekCard=`<div class="scard" style="grid-column:span 2"><div class="sval">${done2}/${goal2}</div><div class="slbl2">Treinos restantes para meta</div></div>`;
+    }
+  }
+  const prevGoalCard=document.getElementById('goal-card');
   document.getElementById('stats-grid').innerHTML=`
-    <div class="scard"><div class="sval">${mn.length}</div><div class="slbl2">Dias ativos no mês</div>${mnDeltaHtml}</div>
-    <div class="scard"><div class="sval">${yr.length}</div><div class="slbl2">Dias ativos no ano</div></div>
-    <div class="scard"><div class="sval">${cnt}</div><div class="slbl2">Vezes ${aw?aw.name:'treino'} feito</div></div>
-    <div class="scard"><div class="sval">${streak} sem</div><div class="slbl2">${streakLabel}</div></div>`;
+    ${weekCard}
+    <div class="scard"><div style="display:flex;align-items:baseline;gap:8px"><div class="sval">${mnCount}</div>${mnDeltaHtml}</div><div class="slbl2">Dias treinados em ${now.toLocaleDateString('pt-BR',{month:'long'})}</div></div>
+    <div class="scard"><div class="sval">${yrSet.size}</div><div class="slbl2">Dias treinados em ${now.getFullYear()}</div></div>
+    <div class="scard"><div class="sval">${cnt}</div><div class="slbl2">Treinos feitos no programa</div></div>
+    <div class="scard"><div class="sval">${streak}</div><div class="slbl2">${streakLabel}</div></div>`;
+  if(justHit&&!prevGoalCard)setTimeout(confetti,200);
 }
 
 function renderMoodTrend(){
@@ -1475,31 +1548,11 @@ function renderMoodTrend(){
 }
 
 function renderHeatmap(){
-  const grid=document.getElementById('heatmap');
-  const monthsEl=document.getElementById('hm-months');
-  const WEEKS=16;const now=new Date();now.setHours(23,59,59,999);
-  const start=new Date(now);start.setDate(now.getDate()-WEEKS*7+1);start.setHours(0,0,0,0);
-  const hbd={};
-  db.history.forEach(h=>{const d=new Date(h.iniciado_em);const k=`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;hbd[k]=(hbd[k]||0)+1;});
-  let html='';let monthsHtml='';let lastMonth=-1;
-  for(let w=0;w<WEEKS;w++){
-    const colStart=new Date(start);colStart.setDate(start.getDate()+w*7);
-    const m=colStart.getMonth();
-    if(m!==lastMonth){monthsHtml+=`<div class="hm-mlbl">${colStart.toLocaleDateString('pt-BR',{month:'short'}).replace('.','')}</div>`;lastMonth=m;}
-    else monthsHtml+='<div class="hm-mlbl"></div>';
-    html+='<div class="hm-col">';
-    for(let d=0;d<7;d++){
-      const day=new Date(start);day.setDate(start.getDate()+w*7+d);
-      if(day>now){html+='<div class="hm-c"></div>';continue;}
-      const k=`${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`;
-      const cnt=hbd[k]||0;
-      const lbl=day.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'});
-      html+=`<div class="hm-c${cnt===0?'':cnt===1?' d1':' d3'}" title="${lbl}: ${cnt} treino(s)"></div>`;
-    }
-    html+='</div>';
-  }
-  monthsEl.innerHTML=monthsHtml;
-  grid.innerHTML=html;
+  const now=new Date();
+  const ms=Array.from({length:4},(_,i)=>new Date(now.getFullYear(),now.getMonth()-3+i,1));
+  const cnt=ms.map(m=>new Set(db.history.filter(h=>{const d=new Date(h.iniciado_em);return d.getFullYear()===m.getFullYear()&&d.getMonth()===m.getMonth();}).map(h=>new Date(h.iniciado_em).getDate())).size);
+  const max=Math.max(...cnt,1);
+  document.getElementById('heatmap').innerHTML=`<div class="act-bars">${cnt.map(n=>`<div class="act-col"><div class="act-n">${n}</div><div class="act-bar" style="height:${n/max*85}%"></div></div>`).join('')}</div><div class="act-lbls">${ms.map(m=>`<div class="act-lbl">${m.toLocaleDateString('pt-BR',{month:'short'}).replace('.','')}</div>`).join('')}</div>`;
 }
 
 function sparkline(values){
@@ -1514,10 +1567,9 @@ function sparkline(values){
   });
   const line=pts.map(p=>p.join(',')).join(' ');
   const [lastX,lastY]=pts[pts.length-1];
-  return`<svg width="100%" height="${h}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" class="evo-spark">
-    <polyline points="${line}" fill="none" stroke="var(--txt2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="${lastX}" cy="${lastY}" r="4" fill="var(--acc)" stroke="var(--s1)" stroke-width="2"/>
-  </svg>`;
+  return`<div style="position:relative"><svg width="100%" height="${h}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" class="evo-spark">
+    <polyline points="${line}" fill="none" stroke="var(--txt2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  </svg><span style="position:absolute;left:${lastX/w*100}%;top:${lastY/h*100}%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--acc);border:2px solid var(--s1);box-sizing:border-box"></span></div>`;
 }
 
 function renderEvo(){
@@ -1716,7 +1768,7 @@ function renderQlLtabs(){
 
 function renderQlExlist(){
   const set=getActiveSet();const workout=set?.workouts.find(w=>w.letter===_qlLetter);
-  const exes=workout?.exercises||[];
+  const exes=(workout?.exercises||[]).filter(we=>we.active!==false);
   document.getElementById('ql-exlist').innerHTML=exes.map(we=>{
     const ex=getEx(we.exId);
     return`<div class="wexrow">
@@ -1756,7 +1808,7 @@ function saveQuickLog(){
 function startWorkout(){
   const set=getActiveSet(),workout=getActiveWorkout();if(!set||!workout)return;
   sess={setId:set.id,letter:workout.letter,workoutName:workout.name,iniciado_em:Date.now(),idx:0,
-    exercises:workout.exercises.map(we=>{const ex=getEx(we.exId);return{exId:we.exId,name:ex?ex.name:'?',scheme:we.scheme,weight:we.weight,increment:we.increment,obs:we.obs,warn:we.warn};})};
+    exercises:workout.exercises.filter(we=>we.active!==false).map(we=>{const ex=getEx(we.exId);return{exId:we.exId,name:ex?ex.name:'?',scheme:we.scheme,weight:we.weight,increment:we.increment,obs:we.obs,warn:we.warn};})};
   sessionStorage.setItem('fitflow_sess',JSON.stringify(sess));
   document.getElementById('ex-wn').textContent=sess.workoutName;
   buildSlides();positionCarousel();updateProgress();updateNavBtns();showOverlay('ov-exec');
@@ -1771,8 +1823,8 @@ function buildSlides(){
       :(()=>{const rps=schemeReps(ex.scheme);const ormHtml=rps&&rps>1?`<div class="w1rm" id="orm${i}">1RM est. ≈ <b>${calcOneRM(ex.weight,rps)} kg</b> (${rps} reps)</div>`:'';return`<div class="wrow"><button class="btnw" onclick="adjW(${i},-1)">−</button><div class="wvwrap"><span class="wnum" id="wv${i}">${ex.weight}</span><span class="wkg">kg</span></div><button class="btnw" onclick="adjW(${i},+1)">+</button></div><div class="whint">Incremento: ${ex.increment} kg</div>${ormHtml}`;})();
     const obs=ex.obs?`<div class="exobs${ex.warn?' warn':''}">${ex.warn?'⚠️ ':''}${ex.obs}</div>`:'';
     const skipped=!!ex.skipped;
-    const skiptag=skipped?`<div class="skiptag">Marcado como não feito</div>`:'';
-    slide.innerHTML=`<div class="exc${skipped?' skipped':''}"><div class="exnum">Exercício ${i+1}</div><div class="exname">${ex.name}</div><div class="exscheme">${ex.scheme}</div>${obs}${skiptag}</div><div class="wcard"><div class="wlbl">Carga</div>${ws}</div>`;
+    const skipCheck=`<label class="skip-check-wrap"><input type="checkbox" ${skipped?'checked':''} onchange="setSkip(${i},this.checked)"><span class="skip-check-lbl">Pular exercício</span></label>`;
+    slide.innerHTML=`<div class="exc${skipped?' skipped':''}"><div class="exnum">Exercício ${i+1}</div><div class="exname">${ex.name}</div><div class="exscheme">${ex.scheme}</div>${obs}${skipCheck}</div><div class="wcard"><div class="wlbl">Carga</div>${ws}</div>`;
     track.appendChild(slide);
   });
 }
@@ -1781,7 +1833,7 @@ function positionCarousel(){document.getElementById('ctrack').style.transform=`t
 
 function updateProgress(){
   const t=sess.exercises.length;
-  document.getElementById('prog-fill').style.width=`${(sess.idx/t)*100}%`;
+  document.getElementById('prog-fill').style.width=`${((sess.idx+1)/t)*100}%`;
   document.getElementById('prog-txt').textContent=`Exercício ${sess.idx+1} de ${t}`;
 }
 
@@ -1791,14 +1843,6 @@ function updateNavBtns(){
   const btn=document.getElementById('btn-nxt');
   if(last){btn.textContent='Finalizar treino ✓';btn.className='btn-nxt done';btn.onclick=openFinishModal;}
   else{btn.textContent='Próximo';btn.className='btn-nxt go';btn.onclick=nextEx;}
-  updateSkipBtn();
-}
-
-function updateSkipBtn(){
-  const skipped=!!sess.exercises[sess.idx].skipped;
-  const btn=document.getElementById('skip-btn');
-  btn.classList.toggle('on',skipped);
-  btn.textContent=skipped?'↩':'⏭';
 }
 
 function nextEx(){if(sess.idx<sess.exercises.length-1){sess.idx++;ps();positionCarousel();updateProgress();updateNavBtns();}}
@@ -1806,12 +1850,10 @@ function prevEx(){if(sess.idx>0){sess.idx--;ps();positionCarousel();updateProgre
 function adjW(i,d){const ex=sess.exercises[i];if(!ex.increment)return;ex.weight=Math.max(0,ex.weight+d*ex.increment);document.getElementById('wv'+i).textContent=ex.weight;const rps=schemeReps(ex.scheme);const ormEl=document.getElementById('orm'+i);if(ormEl&&rps&&rps>1)ormEl.innerHTML=`1RM est. ≈ <b>${calcOneRM(ex.weight,rps)} kg</b> (${rps} reps)`;ps();}
 function ps(){sessionStorage.setItem('fitflow_sess',JSON.stringify(sess));}
 
-function toggleSkip(){
-  const ex=sess.exercises[sess.idx];
-  ex.skipped=!ex.skipped;
+function setSkip(i,skipped){
+  sess.exercises[i].skipped=skipped;
   ps();buildSlides();positionCarousel();
-  if(ex.skipped&&sess.idx<sess.exercises.length-1)nextEx();
-  else updateSkipBtn();
+  if(skipped&&i===sess.idx&&i<sess.exercises.length-1)nextEx();
 }
 
 function showCancelDlg(){showDlg('d-cancel');}
@@ -1952,11 +1994,11 @@ function renderSetCard(set){
   const selLetter=_setSelLetter[set.id]||(isAct?db.nextLetter:set.workouts[0]?.letter);
   const chips=set.workouts.map(w=>`<button class="lchip${w.letter===db.nextLetter&&isAct?' cur':''}${w.letter===selLetter?' sel':''}" onclick="selInlineLetter('${set.id}','${w.letter}')">${w.name}</button>`).join('');
   const workout=set.workouts.find(w=>w.letter===selLetter);
-  const exes=workout?.exercises||[];
+  const exes=(workout?.exercises||[]).filter(we=>we.active!==false);
   const exlist=exes.length
     ?exes.map(we=>{const ex=getEx(we.exId);return`<div class="exrow"><b>${ex?ex.name:'?'}</b> <span class="exrow-scheme">(${we.scheme})</span></div>`;}).join('')
-    :`<div class="exrow exrow-empty">Nenhum exercício ainda</div>`;
-  return`<div class="card setcard"><div class="seth"><div class="setnwrap"><div class="setn"${!isAct?` onclick="activateSet('${set.id}')" style="cursor:pointer"`:''}>${set.name}</div></div><button class="hbtn" onclick="openDetail('${set.id}')">✏️ Editar</button></div><div class="setletters">${chips}</div><div class="setexlist">${exlist}</div></div>`;
+    :`<div class="exrow exrow-empty">Nenhum exercício ativo</div>`;
+  return`<div class="card setcard"><div class="seth"><div class="setnwrap"><div class="setn"${!isAct?` onclick="activateSet('${set.id}')" style="cursor:pointer"`:''}>${set.name}</div></div><button class="hbtn" onclick="openDetail('${set.id}')">Editar</button></div><div class="setletters">${chips}</div><div class="setexlist">${exlist}</div></div>`;
 }
 
 function renderSets(){
@@ -2123,7 +2165,7 @@ function saveHistEdit(){
   h.mood=_heMood;
   h.exercises=_editHist.exercises.map(e=>({exId:e.exId,scheme:e.scheme,weight:e.weight,skipped:!!e.skipped}));
   save();toast('Histórico atualizado!');
-  if(isDesktop()){const id=h.id;renderHistList();openHistEdit(id);}else{closeHistEdit();renderHistList();}
+  closeHistEdit();renderHistList();renderProgHistorico();
 }
 
 function renderLtabs(){
@@ -2140,23 +2182,27 @@ function renderDetailExes(){
   const workout=_editSetCopy.workouts.find(w=>w.letter===_dLetter);if(!workout)return;
   const total=workout.exercises.length;
   document.getElementById('ov-wsub').textContent=`${total} exercício${total!==1?'s':''}`;
-  const dist=calcDist(workout.exercises);
+  const act=we=>we.active!==false;
+  const dist=calcDist(_editSetCopy.workouts.flatMap(w=>w.exercises.filter(act)));
   renderDist(dist,document.getElementById('ov-distbar'),document.getElementById('ov-distleg'));
+  renderDist(calcDist(workout.exercises.filter(act)),document.getElementById('ov-wdistbar'),document.getElementById('ov-wdistleg'));
   document.getElementById('ov-distwarn').classList.toggle('on',isImbalanced(dist));
   const el=document.getElementById('ov-exlist');
-  if(!total){el.innerHTML=`<div class="empty" style="padding:24px"><div class="empty-ico" style="font-size:32px">➕</div><div class="empty-ttl" style="font-size:14px">Nenhum exercício ainda</div></div>`;return;}
+  const addBtn=`<div style="padding:12px 16px"><button class="btn" style="background:var(--acc-tint);color:var(--accl);width:100%" onclick="openAddExModal()">+ Adicionar</button></div>`;
+  if(!total){el.innerHTML=`<div class="empty" style="padding:24px"><div class="empty-ico" style="font-size:32px">➕</div><div class="empty-ttl" style="font-size:14px">Nenhum exercício ainda</div></div>`+addBtn;return;}
   el.innerHTML=workout.exercises.map((we,i)=>{
     const ex=getEx(we.exId);
-    return`<div class="wexrow">
+    const isActive=we.active!==false;
+    return`<div class="wexrow${isActive?'':' inactive'}">
       <div style="display:flex;flex-direction:column;gap:3px;margin-right:4px">
-        <button class="order-btn" onclick="moveWex(${i},-1)" ${i===0?'disabled':''}>▲</button>
-        <button class="order-btn" onclick="moveWex(${i},1)" ${i===total-1?'disabled':''}>▼</button>
+        <button class="order-btn" onclick="moveWex(${i},-1)" ${i===0?'disabled':''}><span class="material-symbols-rounded">arrow_drop_up</span></button>
+        <button class="order-btn" onclick="moveWex(${i},1)" ${i===total-1?'disabled':''}><span class="material-symbols-rounded">arrow_drop_down</span></button>
       </div>
-      <div class="wexinfo"><div class="wexname">${ex?ex.name:'?'}</div><div class="wexmeta">${we.scheme} · ${we.increment?we.increment+' kg inc.':'peso corpo'}</div>${we.obs?`<div class="wexobs${we.warn?' warn':''}">${we.warn?'⚠️ ':''}${we.obs}</div>`:''}</div>
-      <div class="wexw" onclick="openEditWex(${i})">${we.weight} kg ✏️</div>
-      <button class="btnrem" onclick="removeWex(${i})">×</button>
+      <div class="wexinfo"><div class="wexname">${ex?ex.name:'?'}</div><div class="wexmeta">${we.scheme} • ${we.increment?`aumento ${we.increment}kg • inicial ${we.weight||0}kg`:'peso corporal'}</div>${we.obs?`<div class="wexobs${we.warn?' warn':''}">${we.warn?'⚠️ ':''}${we.obs}</div>`:''}</div>
+      <label class="sw" title="${isActive?'Desativar':'Ativar'}"><input type="checkbox" ${isActive?'checked':''} onchange="toggleWexActive(${i},this.checked)"><span class="sw-track"></span></label>
+      <button class="btnrem" onclick="removeWexConfirm(${i})" title="Remover do treino"><span class="material-symbols-rounded">delete</span></button>
     </div>`;
-  }).join('');
+  }).join('')+addBtn;
 }
 
 function moveWex(idx,dir){
@@ -2236,12 +2282,132 @@ function saveWex(){
 }
 
 /* ═══════════════════════════════════════
+   PROGRESSO TAB
+═══════════════════════════════════════ */
+let _progTab='corpo',_mgTab=null,_repFilter={};
+
+function switchProgTab(name){
+  _progTab=name;
+  document.querySelectorAll('.prog-tab').forEach(b=>b.classList.toggle('on',b.id==='ptab-'+name));
+  document.querySelectorAll('.prog-pane').forEach(p=>p.classList.toggle('on',p.id==='pp-'+name));
+  if(name==='corpo')renderCorpo();
+  if(name==='cargas')renderCargas();
+  if(name==='historico')renderProgHistorico();
+}
+
+function renderProgresso(){
+  _progTab=_progTab||'corpo';
+  switchProgTab(_progTab);
+}
+
+function renderCorpo(){
+  const el=document.getElementById('pp-corpo-content');
+  el.innerHTML=
+    profileMetricCard('weight','Peso','kg','targetWeight')+
+    profileMetricCard('bodyfat','% Gordura','%','targetBodyfat')+
+    profileMetricCard('muscle','Kg Músculo','kg','targetMuscle');
+}
+
+function renderCargas(){
+  // Grupos musculares que têm exercícios com histórico
+  const exWithHistory=new Set(db.history.flatMap(h=>h.exercises.filter(e=>!e.skipped&&e.weight>0).map(e=>e.exId)));
+  const availGroups=MG.filter(mg=>db.exercises.some(ex=>ex.ms.some(m=>m.g===mg.id)&&exWithHistory.has(ex.id)));
+  if(!availGroups.length){
+    document.getElementById('mg-chips').innerHTML='';
+    document.getElementById('pp-cargas-content').innerHTML=`<div class="empty"><div class="empty-ico">📊</div><div class="empty-ttl">Sem dados de carga ainda</div></div>`;
+    return;
+  }
+  if(!_mgTab||!availGroups.find(g=>g.id===_mgTab))_mgTab=availGroups[0].id;
+  document.getElementById('mg-chips').innerHTML=availGroups.map(mg=>
+    `<button class="mg-chip${mg.id===_mgTab?' on':''}" onclick="_mgTab='${mg.id}';renderCargasContent()">${mg.label}</button>`
+  ).join('');
+  renderCargasContent();
+}
+
+function renderCargasContent(){
+  document.querySelectorAll('.mg-chip').forEach(c=>c.classList.toggle('on',c.textContent===MG.find(m=>m.id===_mgTab)?.label));
+  const el=document.getElementById('pp-cargas-content');
+  const exes=db.exercises.filter(ex=>ex.ms.some(m=>m.g===_mgTab));
+  const sortedHist=db.history.slice().sort((a,b)=>a.iniciado_em-b.iniciado_em);
+  const cards=exes.map(ex=>{
+    // Agrupar entradas por scheme para permitir filtro de reps
+    const entries=sortedHist.flatMap(h=>h.exercises.filter(e=>e.exId===ex.id&&!e.skipped&&e.weight>0).map(e=>({weight:e.weight,scheme:e.scheme||'?',date:h.iniciado_em})));
+    if(!entries.length)return'';
+    const schemes=[...new Set(entries.map(e=>e.scheme))];
+    if(!_repFilter[ex.id]||!schemes.includes(_repFilter[ex.id]))_repFilter[ex.id]=schemes[0];
+    const filtered=entries.filter(e=>e.scheme===_repFilter[ex.id]);
+    const vals=filtered.map(e=>e.weight);
+    const repChips=schemes.length>1?`<div class="rep-chips">${schemes.map(s=>`<button class="rep-chip${s===_repFilter[ex.id]?' on':''}" onclick="_repFilter['${ex.id}']='${s}';renderCargasContent()">${s}</button>`).join('')}</div>`:'';
+    const spark=vals.length>=2?sparkline(vals):`<div class="evo-nodat">Poucos dados</div>`;
+    const last=vals[vals.length-1];
+    const delta=vals.length>=2?vals[vals.length-1]-vals[0]:0;
+    const deltaHtml=vals.length>=2?`<span class="evo-delta ${delta>0?'up':delta<0?'down':'flat'}">${delta===0?'—':`${delta>0?'▲ +':'▼ '}${delta}kg`}</span>`:'';
+    return`<div class="card carga-card"><div class="carga-exname">${ex.name}</div>${repChips}<div class="evo-valrow"><span class="evo-val">${last}<span class="evo-unit">kg</span></span>${deltaHtml}</div>${spark}</div>`;
+  }).filter(Boolean).join('');
+  el.innerHTML=cards||`<div class="empty"><div class="empty-ico">💪</div><div class="empty-ttl">Nenhum dado para este grupo</div></div>`;
+}
+
+function renderProgHistorico(){
+  const c=document.getElementById('pp-hist-list');
+  if(!db.history.length){c.innerHTML=`<div class="empty"><div class="empty-ico">🕒</div><div class="empty-ttl">Nenhum treino registrado ainda</div></div>`;return;}
+  const sorted=[...db.history].sort((a,b)=>b.iniciado_em-a.iniciado_em);
+  c.innerHTML=sorted.map(h=>{
+    const d=new Date(h.iniciado_em);
+    const dateStr=d.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'});
+    const set=db.workoutSets.find(s=>s.id===h.setId);
+    const workout=set?.workouts.find(w=>w.letter===h.letter);
+    const wname=workout?workout.name:'Treino '+h.letter;
+    const done=h.exercises.filter(e=>!e.skipped).length;
+    const total=h.exercises.length;
+    const mi=moodInfo(h.mood);
+    return`<div class="card histcard" onclick="openHistEdit('${h.id}')">
+      <div class="histh"><div class="histdate">${dateStr}</div>${mi?`<span class="histmood">${mi.emoji}</span>`:''}</div>
+      <div class="histwn">${wname}</div>
+      <div class="histmeta">${done}/${total} exercícios feitos · ${h.calories||0} kcal</div>
+    </div>`;
+  }).join('');
+}
+
+/* ═══════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════ */
+function confetti(){
+  const colors=['var(--acc)','var(--acc2)','#4ADE80','#FBBF24','#60A5FA'];
+  for(let i=0;i<40;i++){
+    const el=document.createElement('div');
+    el.className='confetti-piece';
+    el.style.cssText=`left:${Math.random()*100}vw;background:${colors[i%colors.length]};animation-duration:${0.8+Math.random()*1.2}s;animation-delay:${Math.random()*0.5}s;`;
+    document.body.appendChild(el);
+    el.addEventListener('animationend',()=>el.remove());
+  }
+}
+
+function toggleWexActive(idx,active){
+  const w=_editSetCopy?.workouts.find(w=>w.letter===_dLetter);
+  if(!w)return;
+  w.exercises[idx].active=active;
+  markDirty();renderDetailExes();
+}
+
+let _pendRemoveIdx=null;
+function removeWexConfirm(idx){_pendRemoveIdx=idx;showDlg('d-remwex');}
+function confirmRemoveWex(){hideDlg('d-remwex');if(_pendRemoveIdx!==null){removeWex(_pendRemoveIdx);_pendRemoveIdx=null;}}
+
+function openSettings(){
+  // Compatibilidade: abre a aba perfil e expande a seção de config
+  switchTab('perfil');
+  setTimeout(()=>{const d=document.getElementById('settings-details');if(d)d.open=true;},100);
+}
+
+/* ═══════════════════════════════════════
    INIT
 ═══════════════════════════════════════ */
 (function(){
   checkExpiry();
   renderHome();
   document.getElementById('fab').classList.add('hide');
+  // Sync theme toggle no Perfil
+  document.getElementById('theme-toggle').checked=document.documentElement.dataset.theme==='dark';
 })();
 </script>
 </body>
