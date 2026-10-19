@@ -2198,7 +2198,7 @@ function renderDetailExes(){
         <button class="order-btn" onclick="moveWex(${i},-1)" ${i===0?'disabled':''}><span class="material-symbols-rounded">arrow_drop_up</span></button>
         <button class="order-btn" onclick="moveWex(${i},1)" ${i===total-1?'disabled':''}><span class="material-symbols-rounded">arrow_drop_down</span></button>
       </div>
-      <div class="wexinfo"><div class="wexname">${ex?ex.name:'?'}</div><div class="wexmeta">${we.scheme} • ${we.increment?`aumento ${we.increment}kg • inicial ${we.weight||0}kg`:'peso corporal'}</div>${we.obs?`<div class="wexobs${we.warn?' warn':''}">${we.warn?'⚠️ ':''}${we.obs}</div>`:''}</div>
+      <div class="wexinfo" style="cursor:pointer" onclick="openEditWex(${i})"><div class="wexname">${ex?ex.name:'?'}</div><div class="wexmeta">${we.scheme} • ${we.increment?`aumento ${we.increment}kg • inicial ${we.weight||0}kg`:'peso corporal'}</div>${we.obs?`<div class="wexobs${we.warn?' warn':''}">${we.warn?'⚠️ ':''}${we.obs}</div>`:''}</div>
       <label class="sw" title="${isActive?'Desativar':'Ativar'}"><input type="checkbox" ${isActive?'checked':''} onchange="toggleWexActive(${i},this.checked)"><span class="sw-track"></span></label>
       <button class="btnrem" onclick="removeWexConfirm(${i})" title="Remover do treino"><span class="material-symbols-rounded">delete</span></button>
     </div>`;

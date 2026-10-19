@@ -45,6 +45,7 @@ Cada versão publicada fica marcada com uma tag no repositório — dá pra volt
   - **Editar treino:**
     - Exercícios podem ser **inativados** com um switch: ficam apagados, não aparecem nem são cobrados na execução, mas o histórico é preservado. A lixeira remove o exercício com confirmação.
     - Cada exercício mostra série, aumento e peso inicial (ex.: "3×15 • aumento 5kg • inicial 20kg").
+    - Tocar no nome do exercício abre o modal para editar repetições, peso inicial e incremento.
     - Botão **+ Adicionar** dentro do cartão da lista; o campo de nome fica com o switch de treino ativo ao lado.
     - Dois gráficos de distribuição muscular: do treino inteiro e do dia selecionado (ignoram exercícios inativos).
   - **Execução do treino:**
